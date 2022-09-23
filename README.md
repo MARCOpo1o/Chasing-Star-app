@@ -22,11 +22,14 @@ We will have user schema{Username, Userid} and a photo schema {photoid, userid, 
 夜来风雨声
 花落知多少
 
-Table 1: User users
+Table 1: User users {user_name:string email:string password:string}
 Table 2: Photo photos
-Table 3: Location locations
+Table 3: Location locations {location_name:string coordinates:array}
 Table 4: Weather
 Table 5: Light_pollution light_pollutions
 
 ## First model
 $ rails generate scaffold User user_name:string email:string password:string
+
+## second model
+$ rails generate scaffold Location location_name:string coordinates:json
