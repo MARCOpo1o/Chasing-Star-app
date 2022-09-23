@@ -17,11 +17,6 @@ Michael Jiang: Frontend
 
 We will have user schema{Username, Userid} and a photo schema {photoid, userid, photo location, shootin time}, geodata {location, light pollution, weather}
 
-春眠不觉晓
-处处闻啼鸟
-夜来风雨声
-花落知多少
-
 Table 1: User users
 Table 2: Photo photos
 Table 3: Location locations
@@ -29,4 +24,6 @@ Table 4: Weather
 Table 5: Light_pollution light_pollutions
 
 ## First model
+```
 $ rails generate scaffold User user_name:string email:string password:string
+```
