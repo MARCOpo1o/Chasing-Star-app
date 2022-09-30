@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'algorithm/simple'
   resources :locations
   resources :users
   root "users#index"
