@@ -10,10 +10,10 @@ The product helps users find stargazing spots. By applying light pollution API, 
 
 ## Team Member Interests
 
-Jingqian Cheng: Backend
-Jian He: Frontend, UI/UX Design
-Marco Qin: Machine learning/ Algorithm
-Michael Jiang: Frontend
+Jingqian Cheng: Backend  
+Jian He: Frontend, UI/UX Design  
+Marco Qin: Machine learning/ Algorithm  
+Michael Jiang: Frontend  
 
 ## Explaination of Schema
 
