@@ -18,46 +18,44 @@ Michael Jiang: Frontend
 ## Explaination of Schema
 
 
-Tables:
+### Tables:
 
-Table 1: User users {user_name: string, email: string, password: string, profile_image_url: text, saved_locations: integer[], photo_id: integer[], post_id: integer[]}
-Table 2: Photo photos {image_url: text, shooting_time: datetime, uploader_id: integer, post_id: integer, location_id: integer}
-Table 3: Location locations {location_name: string, coordinates: json, average_rate: float, tag: string[], photo_id: integer[], post_id: integer[], weather_id: integer, light_pollution_id: integer}
-Table 4: Post posts {message: text, rate: integer, creator_id: integer, location_id: integer, comment_id: integer[], photo_id: integer[]}
-Table 5: Comment comments {message: text, creator_id: integer, post_id: integer}
-Table 6: Weather weathers {weather_type: string, time: datetime, coordinates: json, location_id: integer}
-Table 7: Light_pollution light_pollutions {pollution_index: integer, time: datetime, coordinates: json, location_id: integer}
+**Table 1:** User users {user_name: string, email: string, password: string, profile_image_url: text, saved_locations: integer[], photo_id: integer[], post_id: integer[]}  
 
+**Table 2:** Photo photos {image_url: text, shooting_time: datetime, uploader_id: integer, post_id: integer, location_id: integer}  
 
-Associations:
+**Table 3:** Location locations {location_name: string, coordinates: json, average_rate: float, tag: string[], photo_id: integer[], post_id: integer[], weather_id: integer, light_pollution_id: integer}  
 
-One to One:
-Location -> Weather(location_id), Light_pollution(location_id)
-Weather -> Location(weather_id)
-Light_pollution -> Location(light_pollution_id) // each record of weather and light pollution is distinct since they are in different time
+**Table 4:** Post posts {message: text, rate: integer, creator_id: integer, location_id: integer, comment_id: integer[], photo_id: integer[]}  
 
-One to Many: 
-User -> Photo(uploader_id), Post(creator_id), Comment(creator_id)
-Location -> Photo(location_id), Post(location_id)
+**Table 5:** Comment comments {message: text, creator_id: integer, post_id: integer}  
 
-Many to One:
-Photo -> User(photo_id), Post(photo_id)
-Post -> User(post_id), Location(post_id)
-Comment -> Post(comment_id)
-Location -> User(saved_locations)
+**Table 6:** Weather weathers {weather_type: string, time: datetime, coordinates: json, location_id: integer}  
 
-Many to Many:
-Null
+**Table 7:** Light_pollution light_pollutions {pollution_index: integer, time: datetime, coordinates: json, location_id: integer}
 
 
+### Associations:
 
-## First model
+**One to One:**
+Location -> Weather(location_id), Light_pollution(location_id)  
 
-```
-$ rails generate scaffold User user_name:string email:string password:string
+Weather -> Location(weather_id)  
 
-## second model
-$ rails generate scaffold Location location_name:string coordinates:json
-```
+Light_pollution -> Location(light_pollution_id) // each record of weather and light pollution is distinct since they are in different time  
 
-[1]: https://trello.com/invite/b/LLSmtsFl/ed133625c73fabd43e51ee04609c263f/app-development
+**One to Many:**  
+User -> Photo(uploader_id), Post(creator_id), Comment(creator_id)  
+
+Location -> Photo(location_id), Post(location_id)  
+
+**Many to One:**  
+
+Photo -> User(photo_id), Post(photo_id)  
+
+Post -> User(post_id), Location(post_id)  
+
+Comment -> Post(comment_id)  
+
+Location -> User(saved_locations)  
+
