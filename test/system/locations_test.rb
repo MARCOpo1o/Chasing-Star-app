@@ -14,8 +14,8 @@ class LocationsTest < ApplicationSystemTestCase
     visit locations_url
     click_on "New location"
 
-    fill_in "Coordinates", with: @location.coordinates
     fill_in "Location name", with: @location.location_name
+    fill_in "String", with: @location.string
     click_on "Create Location"
 
     assert_text "Location was successfully created"
@@ -26,8 +26,8 @@ class LocationsTest < ApplicationSystemTestCase
     visit location_url(@location)
     click_on "Edit this location", match: :first
 
-    fill_in "Coordinates", with: @location.coordinates
     fill_in "Location name", with: @location.location_name
+    fill_in "String", with: @location.string
     click_on "Update Location"
 
     assert_text "Location was successfully updated"

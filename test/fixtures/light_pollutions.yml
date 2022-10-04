@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pollution_index: 1
+  time: 2022-10-04 17:45:54
+  coordinates: 
+  location_id: 1
+
+two:
+  pollution_index: 1
+  time: 2022-10-04 17:45:54
+  coordinates: 
+  location_id: 1

@@ -10,23 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_30_193407) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_04_222201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "message"
+    t.integer "creator_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "light_pollutions", force: :cascade do |t|
+    t.integer "pollution_index"
+    t.datetime "time"
+    t.json "coordinates"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "location_name"
     t.json "coordinates"
+    t.float "average_rate"
+    t.string "tag", default: [], array: true
+    t.integer "photo_id", default: [], array: true
+    t.integer "post_id", default: [], array: true
+    t.integer "weather_id"
+    t.integer "light_pollution_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string "image_url"
-    t.string "uploader"
-    t.string "shooting_time"
-    t.string "latitude"
-    t.string "longitude"
+    t.text "image_url"
+    t.datetime "shooting_time"
+    t.integer "uploader_id"
+    t.integer "post_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "message"
+    t.integer "rate"
+    t.integer "creator_id"
+    t.integer "location_id"
+    t.integer "comment_id", default: [], array: true
+    t.integer "photo_id", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,6 +69,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_30_193407) do
     t.string "user_name"
     t.string "email"
     t.string "password"
+    t.text "profile_image_url"
+    t.integer "saved_locations", default: [], array: true
+    t.integer "photo_id", default: [], array: true
+    t.integer "post_id", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.string "weather_type"
+    t.datetime "time"
+    t.json "coordinates"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

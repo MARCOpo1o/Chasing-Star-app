@@ -17,24 +17,39 @@ Michael Jiang: Frontend
 
 ## Explaination of Schema
 
-We will have user schema{Username, Userid} and a photo schema {photoid, userid, photo location, shootin time}, geodata {location, light pollution, weather}
 
-春眠不觉晓
-处处闻啼鸟
-夜来风雨声
-花落知多少
+Tables:
 
-Table 1: User users {user_name:string email:string password:string}
-Table 2: Photo photos
-Table 3: Location locations {location_name:string coordinates:array}
-Table 4: Weather
-Table 5: Light_pollution light_pollutions
+Table 1: User users {user_name: string, email: string, password: string, profile_image_url: text, saved_locations: integer[], photo_id: integer[], post_id: integer[]}
+Table 2: Photo photos {image_url: text, shooting_time: datetime, uploader_id: integer, post_id: integer, location_id: integer}
+Table 3: Location locations {location_name: string, coordinates: json, average_rate: float, tag: string[], photo_id: integer[], post_id: integer[], weather_id: integer, light_pollution_id: integer}
+Table 4: Post posts {message: text, rate: integer, creator_id: integer, location_id: integer, comment_id: integer[], photo_id: integer[]}
+Table 5: Comment comments {message: text, creator_id: integer, post_id: integer}
+Table 6: Weather weathers {weather_type: string, time: datetime, coordinates: json, location_id: integer}
+Table 7: Light_pollution light_pollutions {pollution_index: integer, time: datetime, coordinates: json, location_id: integer}
 
-- Table 1: User users
-- Table 2: Photo photos
-- Table 3: Location locations
-- Table 4: Weather
-- Table 5: Light_pollution light_pollutions
+
+Associations:
+
+One to One:
+Location -> Weather(location_id), Light_pollution(location_id)
+Weather -> Location(weather_id)
+Light_pollution -> Location(light_pollution_id) // each record of weather and light pollution is distinct since they are in different time
+
+One to Many: 
+User -> Photo(uploader_id), Post(creator_id), Comment(creator_id)
+Location -> Photo(location_id), Post(location_id)
+
+Many to One:
+Photo -> User(photo_id), Post(photo_id)
+Post -> User(post_id), Location(post_id)
+Comment -> Post(comment_id)
+Location -> User(saved_locations)
+
+Many to Many:
+Null
+
+
 
 ## First model
 
