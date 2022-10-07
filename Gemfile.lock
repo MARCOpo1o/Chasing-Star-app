@@ -90,6 +90,8 @@ GEM
     digest (3.1.0)
     erubi (1.11.0)
     excon (0.93.0)
+    faker (2.23.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -225,6 +227,7 @@ DEPENDENCIES
   capybara
   debug
   excon
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)

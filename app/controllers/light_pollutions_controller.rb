@@ -1,0 +1,2 @@
+class LightPollutionsController < ApplicationController
+end

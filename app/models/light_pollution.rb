@@ -1,0 +1,2 @@
+class LightPollution < ApplicationRecord
+end

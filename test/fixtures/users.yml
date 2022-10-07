@@ -4,8 +4,16 @@ one:
   user_name: MyString
   email: MyString
   password: MyString
+  profile_image_url: MyText
+  saved_locations: 1
+  photo_id: 1
+  post_id: 1
 
 two:
   user_name: MyString
   email: MyString
   password: MyString
+  profile_image_url: MyText
+  saved_locations: 1
+  photo_id: 1
+  post_id: 1
