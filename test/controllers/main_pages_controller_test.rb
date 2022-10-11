@@ -2,12 +2,12 @@ require "test_helper"
 
 class MainPagesControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
-    get main_pages_home_url
+    get root_path
     assert_response :success
   end
 
   test "should get explore" do
-    get main_pages_explore_url
+    get explore_path
     assert_response :success
   end
 end
