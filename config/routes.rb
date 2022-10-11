@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'main_pages/home'
+  get 'main_pages/explore'
   resources :light_pollutions
   resources :weathers
   resources :comments
