@@ -46,3 +46,7 @@ $ rails generate scaffold Location location_name:string coordinates:json
 ```
 
 [1]: https://trello.com/invite/b/LLSmtsFl/ed133625c73fabd43e51ee04609c263f/app-development
+
+
+## Prototype
+ [1]: https://www.figma.com/file/KOc5UqZg2ftcQqWEvJlc2Z/Chasing-Stars?node-id=203%3A1392
