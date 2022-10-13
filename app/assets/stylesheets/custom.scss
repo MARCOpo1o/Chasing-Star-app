@@ -20,6 +20,29 @@
   text-decoration: none;
 }
 
+/* body */
+.background {
+  background-image: url(starpic.webp);
+  background-size: contains;
+  width: auto;
+  height: auto;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* table */
+table {
+    border-collapse: collapse;
+    background: white;
+    color: black;
+}
+th, td {
+    font-weight: bold;
+}
+
 /* footer */
 
 footer {
