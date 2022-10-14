@@ -11,11 +11,15 @@
      <%= render 'layouts/shim' %>
   </head>
 
-  <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-    <%= yield %>
-     <%= render 'layouts/footer' %>
+  <body class = "background">
+
+ <%= render 'layouts/header' %>
+    <div >
+      <div class="container mt-200"> 
+        <%= yield %>
+      </div>
     </div>
+     <%= render 'layouts/footer' %>
+    </div> 
   </body>
 </html>

@@ -23,9 +23,9 @@
 /* body */
 .background {
   background-image: url(starpic.webp);
-  background-size: contains;
-  width: auto;
-  height: auto;
+  background-size: fit;
+  height: 100%;
+  width: 100%;
 }
 .flex-container {
   display: flex;
@@ -46,7 +46,7 @@ th, td {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 500px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;
