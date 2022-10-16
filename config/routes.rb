@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root "main_pages#home"
+  get  "/signup",  to: "users#new"
+  get "/explore", to: "main_pages#explore"
   resources :light_pollutions
   resources :weathers
   resources :comments
@@ -7,8 +10,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :users
   resources :user_locations
-  get "/explore", to:"main_pages#explore"
-  root "main_pages#home"
+  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
