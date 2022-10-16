@@ -2,14 +2,14 @@
 
 one:
   image_url: MyText
-  shooting_time: 2022-10-04 17:21:32
-  uploader_id: 1
+  # shooting_time: 2022-10-04 17:21:32
+  user_id: 1
   post_id: 1
   location_id: 1
-
+ 
 two:
   image_url: MyText
-  shooting_time: 2022-10-04 17:21:32
-  uploader_id: 1
+  # shooting_time: 2022-10-04 17:21:32
+  user_id: 1
   post_id: 1
   location_id: 1

@@ -2,8 +2,13 @@
 
 one:
   location_name: MyString
-  string: MyString
+  coordinates:
+  average_rate: 3.0
+  tag: [MyString]
 
 two:
   location_name: MyString
-  string: MyString
+  coordinates:
+  average_rate: 4.0
+  tag: [MyString]
+ 
