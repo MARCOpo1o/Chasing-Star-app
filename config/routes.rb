@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_locations
   resources :light_pollutions
   resources :weathers
   resources :comments

@@ -1,2 +1,8 @@
 class Location < ApplicationRecord
+    has_many :user_location
+    has_many :users, through: :user_location
+    has_many :light_pollutions
+    has_many :weathers
+    has_many :posts
+    has_many :photos
 end
