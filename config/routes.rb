@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  root "main_pages#home"
-  get  "/signup",  to: "users#new"
-  get "/explore", to: "main_pages#explore"
+  get 'sessions/new'
+  root   "main_pages#home"
+  get    "/signup",  to: "users#new"
+  get    "/explore", to: "main_pages#explore"
+  get    "/login",   to: "sessions#new"
+  post   "/login",   to: "sessions#create"
+  delete "/logout",  to: "sessions#destroy"
   resources :light_pollutions
   resources :weathers
   resources :comments

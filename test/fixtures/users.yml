@@ -12,3 +12,8 @@
 #   password: MyString
 #   profile_image_url: MyText
 
+michael:
+  user_name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
+
