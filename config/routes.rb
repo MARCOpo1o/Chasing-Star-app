@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :user_locations
+  get 'sessions/new'
+  root   "main_pages#home"
+  get    "/signup",  to: "users#new"
+  get    "/explore", to: "main_pages#explore"
+  get    "/login",   to: "sessions#new"
+  post   "/login",   to: "sessions#create"
+  delete "/logout",  to: "sessions#destroy"
   resources :light_pollutions
   resources :weathers
   resources :comments
@@ -7,7 +13,9 @@ Rails.application.routes.draw do
   resources :locations
   resources :photos
   resources :users
-  root "photos#index"
+  resources :user_locations
+  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

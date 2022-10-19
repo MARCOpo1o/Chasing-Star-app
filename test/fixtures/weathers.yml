@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  weather_type: Sunny
   time: 2022-10-04 17:44:21
   coordinates: 
   location_id: 1
 
 two:
-  type: 
+  weather_type: Rain
   time: 2022-10-04 17:44:21
   coordinates: 
   location_id: 1

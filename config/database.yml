@@ -80,7 +80,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: chasing_stars_production
   username: chasing_stars
   password: <%= ENV["CHASING_STARS_DATABASE_PASSWORD"] %>
