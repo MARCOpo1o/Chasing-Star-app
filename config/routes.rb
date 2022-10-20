@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'maps/index'
   get 'sessions/new'
   root   "main_pages#home"
   get    "/signup",  to: "users#new"
@@ -6,6 +7,9 @@ Rails.application.routes.draw do
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
+
+  get    "/map",     to: "locations#index"
+
   resources :light_pollutions
   resources :weathers
   resources :comments
