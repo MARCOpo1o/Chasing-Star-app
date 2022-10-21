@@ -68,3 +68,4 @@ class LocationsController < ApplicationController
       params.require(:location).permit(:location_name, :average_rate)
     end
 end
+ 
