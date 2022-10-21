@@ -13,7 +13,7 @@ gem 'rails-controller-testing'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-gem "bootstrap-sass"
+gem 'bootstrap', '~> 5.2.2'
 
 #added for algo
 gem 'excon'

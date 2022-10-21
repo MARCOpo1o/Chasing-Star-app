@@ -15,4 +15,11 @@ document.addEventListener("turbo:load", function() {
       let menu = document.querySelector("#dropdown-menu");
       menu.classList.toggle("active");
     });
+
+    let navbarNavDropdown = document.querySelector("#navbarNavDropdown");
+    navbarNavDropdown.addEventListener("click", function(event) {
+      event.preventDefault();
+      let menu = document.querySelector("#navbar-menu");
+      menu.classList.toggle("collapse");
+    });
 });

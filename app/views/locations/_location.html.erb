@@ -1,12 +1,29 @@
 <div id="<%= dom_id location %>">
-  <p>
-    <strong>Location name:</strong>
-    <%= location.location_name %>
-  </p>
-
-  <p>
-    <strong>Average_rate:</strong>
-    <%= location.average_rate %>
-  </p>
-
+ 
+ <div class="card" style="width: 18rem;">
+    <%= image_tag("star.jpeg") %>
+    <div class="card-body">
+      
+          <h5 class="card-title"><%= location.location_name %></h5>
+          <div>Rate: <%= location.average_rate %></div>
+          <div>Tags: [],[],[]</div>
+          <hr/>
+          <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+          <div class="column">
+            Score
+          </div>   
+        <hr/>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <div class="card-footer">
+        <%# <a href="/locations" class="card-link">Back</a> %>
+      </div>
+    </div>
+  </div>
 </div>
+
+
