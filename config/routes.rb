@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
+  get    "/location", to: "locations#index"
+  get    "/map",     to: "maps#index"
+
   resources :light_pollutions
   resources :weathers
   resources :comments
