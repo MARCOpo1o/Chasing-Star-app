@@ -2,20 +2,20 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title> 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-     <%= render 'layouts/shim' %>
+    <%= render 'layouts/shim' %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <%# <body class = "background"> %>
-
+  
  <%= render 'layouts/header' %>
   <body>
+
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
