@@ -17,7 +17,7 @@
           <a class="nav-link active" aria-current="page" href="/locations">Locations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Star Map</a>
+          <a class="nav-link" href="/map">Star Map</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href='/explore'>Explore</a>
@@ -28,10 +28,13 @@
               <a href="#" id="account" class="nav-link dropdown-toggle">
                 Account <b class="caret"></b>
               </a>
-              <ul id="dropdown-menu" class="dropdown-menu">
-                <a href="#" id="account" class="nav-link">
+              <ul id="dropdown-menu" class="dropdown-menu bg-dark">
+                <%# <a href="#" id="account" class="nav-link">
                   Profile <b class="caret"></b>
-                </a>
+                </a> %>
+                <li>
+                  <li><%= link_to "Profile", current_user %></li>
+                </li>
                 <a href="#" id="account" class="nav-link">
                   Settings <b class="caret"></b>
                 </a>
