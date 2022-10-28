@@ -183,3 +183,11 @@ input {
 .dropdown-menu.active {
   display: block;
 }
+
+#map { 
+    position: absolute; 
+    top: 10; 
+    bottom: 0; 
+    width: 100%;
+    height: 94.5%
+  }
