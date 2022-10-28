@@ -16,6 +16,9 @@
 
 require 'faker'
 
+#test user
+User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
+
 #users
 (1..10).each do 
     User.create(user_name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password)
@@ -54,5 +57,12 @@ end
 #user_locations
 (1..10).each do 
     UserLocation.create(user_id: Faker::Number.number(digits: 1), location_id: Faker::Number.number(digits: 1))
+end
+
+# Generate posts for a subset of users.
+users = User.order(:created_at).take(6)
+10.times do
+  message = Faker::Lorem.sentence(word_count: 5)
+  users.each { |user| user.posts.create!(message: message, location_id: 1) }
 end
 

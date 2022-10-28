@@ -39,6 +39,10 @@ gem "jbuilder"
 #randomly generate data
 gem 'faker'
 
+gem "will_paginate",           "3.3.1"
+
+gem "bootstrap-will_paginate", "1.0.0"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

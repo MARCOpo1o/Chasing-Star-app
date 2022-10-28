@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   has_many :user_locations
   has_many :locations, through: :user_locations
-  has_many :photos
-  has_many :comments
-  has_many :posts
+  has_many :photos, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   before_save { email.downcase! }
   validates :user_name, presence: true, length: { maximum: 50 }
@@ -23,5 +23,11 @@ class User < ApplicationRecord
              BCrypt::Engine.cost
            end
     BCrypt::Password.create(string, cost:)
+  end
+
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 end

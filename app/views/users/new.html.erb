@@ -1,11 +1,14 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @user) do |f| %>
-      <%= render 'shared/error_messages' %>
-
+      <%= render 'shared/error_messages', object: f.object %>
+      
       <%= f.label :user_name %>
       <%= f.text_field :user_name, class: 'form-control' %>
 
