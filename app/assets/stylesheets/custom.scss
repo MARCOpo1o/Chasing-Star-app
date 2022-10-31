@@ -1,13 +1,13 @@
-@import "bootstrap";
+@import 'bootstrap';
 
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
-  -moz-box-sizing:    border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  box-sizing: border-box;
 }
 
 /* header */
@@ -27,7 +27,7 @@ $gray-medium-light: #eaeaea;
   color: #fff;
   text-decoration: none;
 }
- 
+
 /* body */
 .background {
   background-image: url(starpic.webp);
@@ -40,19 +40,19 @@ $gray-medium-light: #eaeaea;
   flex-wrap: wrap;
 }
 
-h1{
+h1 {
   text-align: center;
 }
 
-
 /* table */
 table {
-    border-collapse: collapse;
-    background: white;
-    color: black;
+  border-collapse: collapse;
+  background: white;
+  color: black;
 }
-th, td {
-    font-weight: bold;
+th,
+td {
+  font-weight: bold;
 }
 
 /* footer */
@@ -152,7 +152,10 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input,
+textarea,
+select,
+.uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -183,11 +186,44 @@ input {
 .dropdown-menu.active {
   display: block;
 }
+/* Map */
+#map {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+}
 
-#map { 
-    position: absolute; 
-    top: 10; 
-    bottom: 0; 
-    width: 100%;
-    height: 94.5%
-  }
+:root {
+  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+}
+
+body {
+  background: #111 !important;
+}
+
+.card {
+  background: #222;
+  border: 1px solid #dd2476;
+  color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 2rem;
+}
+
+.btn {
+  border: 5px solid;
+  border-image-slice: 1;
+  background: var(--gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  border-image-source:  var(--gradient) !important; 
+  text-decoration: none;
+  transition: all .4s ease;
+}
+
+.btn:hover, .btn:focus {
+      background: var(--gradient) !important;
+  -webkit-background-clip: none !important;
+  -webkit-text-fill-color: #fff !important;
+  border: 5px solid #fff !important; 
+  box-shadow: #222 1px 0 10px;
+  text-decoration: underline;
+}

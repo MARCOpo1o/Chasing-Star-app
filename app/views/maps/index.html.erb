@@ -1,5 +1,40 @@
 <% provide(:title, 'Map') %>
- <div id='map'></div>
+<div class='row'>
+  <div class='col-sm'>
+    
+    <div class="container mx-auto mt-4">
+  <div class="row">
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>
+    <%= render 'maps/card' %>   
+</div>
+  </div>
+
+  </div>
+  <div class='col-sm'>
+    <div id='map'></div>
+  </div>
+</div>
+
+<style>
+#map_left_part {
+  position: relaive;
+  width: 50%;
+  height: 100%;
+  background-color: #ABBAEA;
+}
+#map_right_part {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+</style>
 
 <%# <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' /> %>
@@ -42,6 +77,13 @@
       .addTo(map);
     // Code from the next step will go here.
   });
+
+  var containerElement = document.getElementById('container');
+  containerElement.style.paddingLeft = '0px';
+  containerElement.style.marginLeft = '0px';
+  containerElement.style.paddingRight = '0px';
+  containerElement.style.marginRight = '0px';
+
 </script>
 
 
