@@ -1,5 +1,11 @@
 # PostgreSQL. Versions 9.3 and up are supported.
-#
+
+# DATABASE CONNECTION TROUBLESHOOTING:
+# to check if postgres cluster status is online or down:
+#     $ pg_lsclusters
+# to restart postgresql service:
+#     $ sudo service postgresql restart
+
 # Install the pg driver:
 #   gem install pg
 # On macOS with Homebrew:
