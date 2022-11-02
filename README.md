@@ -1,21 +1,30 @@
 # Chasing Stars App
 
-## Summary
-
-The product helps users find stargazing spots. By applying light pollution API, weather API, and Geo API, the Chasing Star app would be able to tell users the darkest spots near the user, it will recommend users the best location like national parks and wildlife reservations, and will suggest users the best time to visit based on the weather data. It will also calculate the angle the user can turn their heads to/ point their telescope at. Users can also upload their own secret spots, and share their photos or even shooting parameters at the place. The app also has a stargazing community, where users could share their photos and shooting experiences.
-
-## Trello link
-
-[![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)][1]
-
-## Team Member Interests
+## Team7 Member
 
 Jingqian Cheng: Backend  
 Jian He: Frontend, UI/UX Design  
 Marco Qin: Machine learning/ Algorithm  
 Michael Jiang: Frontend  
 
-## Explaination of Schema
+## Summary
+
+The product helps users find stargazing spots. By applying light pollution API, weather API, and Geo API, the Chasing Star app would be able to tell users the darkest spots near the user, it will recommend users the best location like national parks and wildlife reservations, and will suggest users the best time to visit based on the weather data. It will also calculate the angle the user can turn their heads to/ point their telescope at. Users can also upload their own secret spots, and share their photos or even shooting parameters at the place. The app also has a stargazing community, where users could share their photos and shooting experiences.
+
+## URL patterns and planned views
+what they look like and what they mean. This is related to the output from rails routes, but in English and not repetitive. Also there might be patterns in your design that you have not yet added to rails routes
+root GET        /           main_pages#home   (default URL, shows the homepage with a interactive calendar)
+locations GET   /location   locations#index   (lists all the locations we have)
+mapS GET        /maps       maps#index        (shows all the map page)
+
+
+## Trello link
+
+[Trello](https://trello.com/b/LLSmtsFl/app-development)
+
+
+
+## Explaination of db Schema
 
 
 ### Tables:
@@ -58,4 +67,11 @@ Post -> User(post_id), Location(post_id)
 Comment -> Post(comment_id)  
 
 Location -> User(saved_locations)  
+
+
+## Instruction on running tests
+```
+rails test
+```
+
 
