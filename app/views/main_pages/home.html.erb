@@ -2,8 +2,11 @@
 <div class="container">
   <div class="row">
         <body class = "background">
-        <div class="col-6 p-100">
-            <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&bgcolor=%23A79B8E&ctz=America%2FNew_York&showTitle=0&showTabs=0&showDate=1&showNav=0" style="border:solid 1px #777" width="380" height="500" frameborder="0" scrolling="no"></iframe>
+        <div class="col-6 p-100 simple_calendar">
+            <%# <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&bgcolor=%23A79B8E&ctz=America%2FNew_York&showTitle=0&showTabs=0&showDate=1&showNav=0" style="border:solid 1px #777" width="380" height="500" frameborder="0" scrolling="no"></iframe> %>
+            <%= month_calendar do |date| %>
+                <%= date.day %>
+            <% end %>
         </div>
     </div>
 </div>
