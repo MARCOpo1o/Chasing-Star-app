@@ -5,6 +5,7 @@
       <%= render 'shared/user_info' %>
     </section>
     <a href="/users/:user_id/posts/new">Make a post</a> 
+    <%= link_to "Make a post", new_user_post_path(@user), class: "btn btn-secondary m-1" %>
   </aside>
   <div class="col-md-8">
     <% if @user.posts.any? %>
