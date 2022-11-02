@@ -16,6 +16,14 @@ what they look like and what they mean. This is related to the output from rails
 root GET        /           main_pages#home   (default URL, shows the homepage with a interactive calendar)
 locations GET   /location   locations#index   (lists all the locations we have)
 mapS GET        /maps       maps#index        (shows all the map page)
+login GET       /login      session#new       (log in page)
+signup GET      /signup     user#new          (sign up page)
+users GET       /users      users#index       (displays all the users for admin users only)
+user GET        /users/:id  users#show        (display a specific user's profile and posts)
+edit_user  GET       /users/:id/edit  users#edit   (edit the users)
+logout  DELETE  /logout     sessions#destroy   (logs out the current user)
+new_user_post GET    /users/:user_id/posts/new  posts#new   (a page where users can post)
+explore GET    /explore     main_pages#explore  (will implement in the future, a page where you can see the other users' posts)
 
 
 ## Trello link
@@ -68,6 +76,26 @@ Comment -> Post(comment_id)
 
 Location -> User(saved_locations)  
 
+## List of dependencies on APIs, gems, libraries
+
+**API**
+* Map API
+* Light Pollution API
+* Weather API
+* Location API
+
+**Gems**
+* Faker
+* Bootstrap
+* Will_paginate
+* Simple_calendar
+
+**Libraries**
+* Boostrap
+* Bcrypt
+* Openssl
+* URI
+* Net/http
 
 ## Instruction on running tests
 ```
