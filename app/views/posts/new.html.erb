@@ -1,0 +1,18 @@
+<% provide(:title, 'Post') %> 
+<h1>Make a Post</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @post, url: new_user_post_path) do |f| %> 
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label :messgae %>
+        <%= f.text_field :message, class: 'form-control' %>
+        
+        <%= f.label :location_id %>
+        <%= f.number_field :location_id, class: 'form-control' %>
+        
+        <%= f.submit "Make a post", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
