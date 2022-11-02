@@ -2,17 +2,19 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= render 'shared/user_info' %>
+      <%= render 'shared/user_info'%>
     </section>
-    <a href="/users/:user_id/posts/new">Make a post</a> 
     <%= link_to "Make a post", new_user_post_path(@user), class: "btn btn-secondary m-1" %>
   </aside>
+
   <div class="col-md-8">
     <% if @user.posts.any? %>
+      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
       <h3>Posts (<%= @user.posts.count %>)</h3>
       <ol class="posts">
         <%= render @posts %> 
-      </ol> 
+      </ol>     
+      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
     <% end %>
   </div>
-</div> 
+</div>  

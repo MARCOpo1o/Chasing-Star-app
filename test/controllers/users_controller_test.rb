@@ -1,7 +1,6 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-<<<<<<< HEAD
   def setup
     @user = users(:michael)
     @other_user = users(:archer)
@@ -38,9 +37,5 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                               email: @user.email } }
     assert flash.empty?
     assert_redirected_to root_url
-=======
-  def index
-    @users = User.paginate(page: params[:page])
->>>>>>> Post
   end
-end
+end 

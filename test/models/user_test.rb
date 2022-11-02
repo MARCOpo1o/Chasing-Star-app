@@ -72,10 +72,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-<<<<<<< HEAD
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
-=======
+  end
+  
   test "associated posts should be destroyed" do
     @user.save
     @location.save
@@ -84,7 +84,6 @@ class UserTest < ActiveSupport::TestCase
     assert_difference 'Post.count', -1 do
       @user.destroy
     end
->>>>>>> Post
   end
 
 end
