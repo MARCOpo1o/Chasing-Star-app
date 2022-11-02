@@ -1,13 +1,35 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+river:
+  message: "Charles River is great"
+  created_at: <%= 10.minutes.ago %>
+  user: michael
+  location: waltham
+  rate: 3
 
-one:
-  message: MyText
-  rate: 1
-  user_id: 1
-  location_id: 1
+autumn:
+  message: "Autumn here is beautiful"
+  created_at: <%= 3.years.ago %>
+  user: michael
+  location: waltham
+  rate: 3
 
-two:
-  message: MyText
-  rate: 1
-  user_id: 1
-  location_id: 1
+mountain:
+  message: "You can see strs on Prospect hill"
+  created_at: <%= 2.hours.ago %>
+  user: michael
+  location: waltham
+  rate: 4
+
+most_recent:
+  message: "Writing a short test"
+  created_at: <%= Time.zone.now %>
+  user: michael
+  location: waltham
+  rate: 4
+
+<% 30.times do |n| %>
+post_<%= n %>:
+  message: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  user: michael
+  location: waltham
+<% end %>

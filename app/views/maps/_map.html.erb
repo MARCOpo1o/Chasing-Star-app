@@ -1,0 +1,49 @@
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+<style>
+  #map { 
+    /* position: absolute;  */
+    top: 10; 
+    bottom: 0; 
+    width: 300px;
+    height: 300px;
+  }
+</style>
+<script>
+  // The value for 'accessToken' begins with 'pk...'
+  mapboxgl.accessToken = 'pk.eyJ1IjoiamVyZW15aGVqaWFuIiwiYSI6ImNsOWdndjcyYjN2dnQzdnFtMDZ5NGszcnQifQ.rdIaJN_0FpyW2sKHhuIrEQ'; 
+  const map = new mapboxgl.Map({
+    container: 'map',
+    // Replace YOUR_STYLE_URL with your style URL.
+    style: 'mapbox://styles/jeremyhejian/cl9glow5o000614o60oelhqh8', 
+    center: [-87.661557, 41.893748],
+    zoom: 10.7
+  });
+
+  /* 
+    Add an event listener that runs
+    when a user clicks on the map element.
+  */
+  map.on('click', (event) => {
+    // If the user clicked on one of your markers, get its information.
+    const features = map.queryRenderedFeatures(event.point, {
+      layers: ['chicago-parks'] // replace with your layer name
+    });
+    if (!features.length) {
+      return;
+    }
+    const feature = features[0];
+
+    /* 
+      Create a popup, specify its options 
+      and properties, and add it to the map.
+    */
+    const popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML(
+        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+      )
+      .addTo(map);
+    // Code from the next step will go here.
+});
+</script>
