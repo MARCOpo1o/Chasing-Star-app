@@ -38,6 +38,9 @@ Route Name      Method  Url                        Controller          Descripti
 ## Prototype link
 [Figma](https://www.figma.com/proto/KOc5UqZg2ftcQqWEvJlc2Z/Chasing-Stars?node-id=203%3A1393&page-id=203%3A1392&starting-point-node-id=203%3A1393)
 
+## Heroku link
+[Heroku](https://chasing-star-app.herokuapp.com)
+
 ## Explaination of db Schema
 
 
