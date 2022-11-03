@@ -210,11 +210,11 @@ input {
 
 #map_container {
   position: fixed;
-  top: 0px;
+  // top: 0px;
   background-color: #222;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  max-height: 100%;
 }
 
 :root {
@@ -223,9 +223,16 @@ input {
 
 .card {
   background: #222;
-  border: 1px solid #dd2476;
+  border: 1px solid #777;
   color: rgba(250, 250, 250, 0.8);
   margin-bottom: 2rem;
+}
+
+.list-group-item {
+  background: #222;
+  color: rgba(250, 250, 250, 0.8);
+  border: 1px solid #777;
+
 }
 
 .btn {
@@ -306,3 +313,8 @@ input {
       border: 0;
     }
   }
+
+/* location card */
+// #li_bg_color {
+//   background-color: #222;
+// }

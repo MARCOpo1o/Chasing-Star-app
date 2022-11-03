@@ -1,26 +1,18 @@
 <% provide(:title, 'Map') %>
 <div class='row'>
-  <div class='col-sm'>
-    
+  <div class='col-sm-5'>
     <div class="container mx-auto mt-4">
       <div class="row">
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
-        <%= render 'maps/card' %>
+        <% 10.times do %>
+          <div class="col m-1">
+            <%= render 'maps/card' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class='col-sm-8'>
+  <div class='col-sm-7'>
     <div id='map_container'>
       <div id='map'></div>
     </div>
