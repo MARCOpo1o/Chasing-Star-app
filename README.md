@@ -13,17 +13,22 @@ The product helps users find stargazing spots. By applying light pollution API, 
 
 ## URL patterns and planned views
 
-* root GET        /           main_pages#home   (default URL, shows the homepage with a interactive calendar)
-* locations GET   /location   locations#index   (lists all the locations we have)
-* mapS GET        /maps       maps#index        (shows all the map page)
-* login GET       /login      session#new       (log in page)
-* signup GET      /signup     user#new          (sign up page)
-* users GET       /users      users#index       (displays all the users for admin users only)
-* user GET        /users/:id  users#show        (display a specific user's profile and posts)
-* edit_user  GET       /users/:id/edit  users#edit   (edit the users)
-* logout  DELETE  /logout     sessions#destroy   (logs out the current user)
-* new_user_post GET    /users/:user_id/posts/new  posts#new   (a page where users can post)
-* explore GET    /explore     main_pages#explore  (will implement in the future, a page where you can see the other users' posts)
+Route Name      Method  Url                        Controller          Description
+* root          GET     /                          main_pages#home     (default URL, shows the homepage with a interactive calendar)
+* locations     GET     /location                  locations#index     (lists all the locations we have)
+* maps          GET     /maps                      maps#index          (shows the map page)
+* login         GET     /login                     session#new         (show log in page)
+* login         POST    /login                     session#create      (log in a user)
+* logout        DELETE  /logout                    sessions#destroy    (logs out the current user)
+* signup        GET     /signup                    user#new            (show sign up page)
+* users         POST    /users                     users#create        (create a new user)
+* users         GET     /users                     users#index         (displays all the users for admin users only)
+* user          GET     /users/:id                 users#show          (display a specific user's profile and posts)
+* edit_user     GET     /users/:id/edit            users#edit          (edit the users)
+* new_user_post GET     /users/:user_id/posts/new  posts#new           (a page where users can make new post)
+* user_posts    POST    /users/:user_id/posts      posts#create        (create a new post)
+* user_post     DELETE  /users/:user_id/posts/:id  posts#destroy       (delete a post)
+* explore       GET     /explore                   main_pages#explore  (will implement in the future, a page where you can see the other users' posts)
 
 
 ## Trello link
@@ -119,26 +124,17 @@ end
 ### Associations:
 
 **One to One:**
-Location -> Weather(location_id), Light_pollution(location_id)  
-
-Weather -> Location(weather_id)  
-
-Light_pollution -> Location(light_pollution_id) // each record of weather and light pollution is distinct since they are in different time  
-
-**One to Many:**  
-User -> Photo(uploader_id), Post(creator_id), Comment(creator_id)  
-
-Location -> Photo(location_id), Post(location_id)  
+Location <- Weather(location_id) 
+Location <- Light_pollution(location_id) 
+// each record of weather and light pollution is distinct since they are in different time  
 
 **Many to One:**  
+User <- Photo(user_id), Post(user_id), Comment(user_id)  
 
-Photo -> User(photo_id), Post(photo_id)  
+Location <- Photo(location_id), Post(location_id)  
 
-Post -> User(post_id), Location(post_id)  
-
-Comment -> Post(comment_id)  
-
-Location -> User(saved_locations)  
+**Many to Many:**  
+User(location_id) <- UserLocation -> Location(user_id)
 
 ## List of dependencies on APIs, gems, libraries
 
