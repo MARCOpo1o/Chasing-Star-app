@@ -8,8 +8,6 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
 gem "bcrypt", "3.1.18"
 
-gem 'rails-controller-testing'
-
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
