@@ -16,6 +16,9 @@
 
 require 'faker'
 
+#test user
+User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
+
 #users
 (1..10).each do 
     User.create(user_name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password)
@@ -54,5 +57,29 @@ end
 #user_locations
 (1..10).each do 
     UserLocation.create(user_id: Faker::Number.number(digits: 1), location_id: Faker::Number.number(digits: 1))
+end
+
+# Create a main sample user.
+User.create!(user_name:  "Example User",
+    email: "example@railstutorial.org",
+    password:              "foobar",
+    password_confirmation: "foobar",
+    admin: true)
+
+# Generate a bunch of additional users.
+50.times do |n|
+name  = Faker::Name.name
+email = "example-#{n+1}@railstutorial.org"
+password = "password"
+User.create!(user_name:  name,
+      email: email,
+      password:              password,
+      password_confirmation: password)
+end
+# Generate posts for a subset of users.
+users = User.order(:created_at).take(6)
+50.times do
+  message = Faker::Lorem.sentence(word_count: 5)
+  users.each { |user| user.posts.create!(message: message, location_id: 1) }
 end
 

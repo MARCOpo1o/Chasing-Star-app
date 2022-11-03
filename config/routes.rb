@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
   root   "main_pages#home"
   get    "/signup",  to: "users#new"
   get    "/explore", to: "main_pages#explore"
@@ -7,16 +6,17 @@ Rails.application.routes.draw do
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
   get    "/map",     to: "maps#index"
+  # get    "/post",    to: "posts#new"
+  # post   "/post",    to: "posts#create"
 
-  resources :light_pollutions
-  resources :weathers
-  resources :comments
-  resources :posts
   resources :locations
   resources :photos
-  resources :users
+  resources :users do
+    resources :posts
+  end
   resources :user_locations
   resources :maps
+  
   
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

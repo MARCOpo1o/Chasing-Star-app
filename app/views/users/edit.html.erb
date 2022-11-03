@@ -1,11 +1,11 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user) do |f| %>
+    <%= form_with(model: @user) do |f|  %>
       <%= render 'shared/error_messages', object: f.object %>
-      
+
       <%= f.label :user_name %>
       <%= f.text_field :user_name, class: 'form-control' %>
 
@@ -18,7 +18,12 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
+
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="https://gravatar.com/emails" target="_blank">change</a>
+    </div>
   </div>
 </div>

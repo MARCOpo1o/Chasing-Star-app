@@ -181,11 +181,26 @@ input {
   }
 }
 
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
 /* Dropdown menu */
 
 .dropdown-menu.active {
   display: block;
 }
+
 /* Map */
 #map {
   position: relative;
@@ -202,15 +217,9 @@ input {
   z-index: -1;
 }
 
-#scrollable {
-  overflow-y: auto !important;
-  max-height: 100%;
-}
-
 :root {
-  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+  --gradient: linear-gradient(to left top, #dd2476 10%, #ff512f 90%) !important;
 }
-
 
 .card {
   background: #222;
@@ -225,16 +234,75 @@ input {
   background: var(--gradient) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  border-image-source:  var(--gradient) !important; 
+  border-image-source: var(--gradient) !important;
   text-decoration: none;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 
-.btn:hover, .btn:focus {
-      background: var(--gradient) !important;
+.btn:hover,
+.btn:focus {
+  background: var(--gradient) !important;
   -webkit-background-clip: none !important;
   -webkit-text-fill-color: #fff !important;
-  border: 5px solid #fff !important; 
+  border: 5px solid #fff !important;
   box-shadow: #222 1px 0 10px;
   text-decoration: underline;
+
+  /* Users index */
+
+  .users {
+    list-style: none;
+    margin: 0;
+    li {
+      overflow: auto;
+      padding: 10px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+  }
+
+  /* posts */
+  .posts {
+    list-style: none;
+    padding: 0;
+    li {
+      padding: 10px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+    .user {
+      margin-top: 5em;
+      padding-top: 0;
+    }
+    .message {
+      display: block;
+      margin-left: 60px;
+      img {
+        display: block;
+        padding: 5px 0;
+      }
+    }
+    .timestamp {
+      color: gray;
+      display: block;
+      margin-left: 60px;
+    }
+    .gravatar {
+      float: left;
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+  }
+
+  aside {
+    textarea {
+      height: 100px;
+      margin-bottom: 5px;
+    }
+  }
+
+  span.image {
+    margin-top: 10px;
+    input {
+      border: 0;
+    }
+  }
 }

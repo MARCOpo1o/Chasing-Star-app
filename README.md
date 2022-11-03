@@ -1,61 +1,165 @@
 # Chasing Stars App
 
-## Summary
-
-The product helps users find stargazing spots. By applying light pollution API, weather API, and Geo API, the Chasing Star app would be able to tell users the darkest spots near the user, it will recommend users the best location like national parks and wildlife reservations, and will suggest users the best time to visit based on the weather data. It will also calculate the angle the user can turn their heads to/ point their telescope at. Users can also upload their own secret spots, and share their photos or even shooting parameters at the place. The app also has a stargazing community, where users could share their photos and shooting experiences.
-
-## Trello link
-
-[![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)][1]
-
-## Team Member Interests
+## Team7 Member
 
 Jingqian Cheng: Backend  
 Jian He: Frontend, UI/UX Design  
 Marco Qin: Machine learning/ Algorithm  
 Michael Jiang: Frontend  
 
-## Explaination of Schema
+## Summary
+
+The product helps users find stargazing spots. By applying light pollution API, weather API, and Geo API, the Chasing Star app would be able to tell users the darkest spots near the user, it will recommend users the best location like national parks and wildlife reservations, and will suggest users the best time to visit based on the weather data. It will also calculate the angle the user can turn their heads to/ point their telescope at. Users can also upload their own secret spots, and share their photos or even shooting parameters at the place. The app also has a stargazing community, where users could share their photos and shooting experiences.
+
+## URL patterns and planned views
+
+Route Name      Method  Url                        Controller          Description
+* root          GET     /                          main_pages#home     (default URL, shows the homepage with a interactive calendar)
+* locations     GET     /location                  locations#index     (lists all the locations we have)
+* maps          GET     /maps                      maps#index          (shows the map page)
+* login         GET     /login                     session#new         (show log in page)
+* login         POST    /login                     session#create      (log in a user)
+* logout        DELETE  /logout                    sessions#destroy    (logs out the current user)
+* signup        GET     /signup                    user#new            (show sign up page)
+* users         POST    /users                     users#create        (create a new user)
+* users         GET     /users                     users#index         (displays all the users for admin users only)
+* user          GET     /users/:id                 users#show          (display a specific user's profile and posts)
+* edit_user     GET     /users/:id/edit            users#edit          (edit the users)
+* new_user_post GET     /users/:user_id/posts/new  posts#new           (a page where users can make new post)
+* user_posts    POST    /users/:user_id/posts      posts#create        (create a new post)
+* user_post     DELETE  /users/:user_id/posts/:id  posts#destroy       (delete a post)
+* explore       GET     /explore                   main_pages#explore  (will implement in the future, a page where you can see the other users' posts)
+
+
+## Trello link
+
+[Trello](https://trello.com/b/LLSmtsFl/app-development)
+
+
+
+## Explaination of db Schema
 
 
 ### Tables:
 
-**Table 1:** User users {user_name: string, email: string, password: string, profile_image_url: text, saved_locations: integer[], photo_id: integer[], post_id: integer[]}  
+```
+create_table "comments", force: :cascade do |t|
+    t.text "message"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-**Table 2:** Photo photos {image_url: text, shooting_time: datetime, uploader_id: integer, post_id: integer, location_id: integer}  
+  create_table "light_pollutions", force: :cascade do |t|
+    t.integer "pollution_index"
+    t.datetime "time"
+    t.json "coordinates"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-**Table 3:** Location locations {location_name: string, coordinates: json, average_rate: float, tag: string[], photo_id: integer[], post_id: integer[], weather_id: integer, light_pollution_id: integer}  
+  create_table "locations", force: :cascade do |t|
+    t.string "location_name"
+    t.json "coordinates"
+    t.float "average_rate"
+    t.string "tag", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-**Table 4:** Post posts {message: text, rate: integer, creator_id: integer, location_id: integer, comment_id: integer[], photo_id: integer[]}  
+  create_table "photos", force: :cascade do |t|
+    t.text "image_url"
+    t.datetime "shooting_time"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-**Table 5:** Comment comments {message: text, creator_id: integer, post_id: integer}  
+  create_table "posts", force: :cascade do |t|
+    t.text "message"
+    t.integer "rate"
+    t.integer "user_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-**Table 6:** Weather weathers {weather_type: string, time: datetime, coordinates: json, location_id: integer}  
+  create_table "user_locations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
-**Table 7:** Light_pollution light_pollutions {pollution_index: integer, time: datetime, coordinates: json, location_id: integer}
+  create_table "users", force: :cascade do |t|
+    t.string "user_name"
+    t.string "email"
+    t.string "password"
+    t.text "profile_image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "remember_digest"
+    t.boolean "admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.string "weather_type"
+    t.datetime "time"
+    t.json "coordinates"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+end
+```
 
 
 ### Associations:
 
 **One to One:**
-Location -> Weather(location_id), Light_pollution(location_id)  
-
-Weather -> Location(weather_id)  
-
-Light_pollution -> Location(light_pollution_id) // each record of weather and light pollution is distinct since they are in different time  
-
-**One to Many:**  
-User -> Photo(uploader_id), Post(creator_id), Comment(creator_id)  
-
-Location -> Photo(location_id), Post(location_id)  
+Location <- Weather(location_id) 
+Location <- Light_pollution(location_id) 
+// each record of weather and light pollution is distinct since they are in different time  
 
 **Many to One:**  
+User <- Photo(user_id), Post(user_id), Comment(user_id)  
 
-Photo -> User(photo_id), Post(photo_id)  
+Location <- Photo(location_id), Post(location_id)  
 
-Post -> User(post_id), Location(post_id)  
+**Many to Many:**  
+User(location_id) <- UserLocation -> Location(user_id)
 
-Comment -> Post(comment_id)  
+## List of dependencies on APIs, gems, libraries
 
-Location -> User(saved_locations)  
+**API**
+* Map API
+* Light Pollution API
+* Weather API
+* Location API
+
+**Gems**
+* Faker
+* Bootstrap
+* Will_paginate
+* Simple_calendar
+
+**Libraries**
+* Boostrap
+* Bcrypt
+* Openssl
+* URI
+* Net/http
+
+## Instruction on running tests
+```
+rails test
+```
+
 
