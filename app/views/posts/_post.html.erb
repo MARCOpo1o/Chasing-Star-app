@@ -4,5 +4,9 @@
   <span class="message"><%= post.message %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
+    <% if current_user?(post.user) %>
+      <%= link_to "delete", user_post_path(@user, post), data: { "turbo-method": :delete,
+                                               turbo_confirm: "You sure?" } %>
+    <% end %>
   </span>
 </li>

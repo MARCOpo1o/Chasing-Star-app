@@ -15,9 +15,19 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect destroy when not logged in" do
     assert_no_difference 'Post.count' do
-      delete user_post_url(@user, @post) 
+      delete user_post_url(@user, @post)
     end
     assert_response :see_other
     assert_redirected_to login_url
+  end
+
+  test "should redirect destroy for wrong micropost" do
+    log_in_as(users(:michael))
+    post = posts(:ants)
+    assert_no_difference 'Post.count' do
+      delete user_post_path(@user, post)
+    end
+    assert_response :see_other
+    assert_redirected_to root_url
   end
 end

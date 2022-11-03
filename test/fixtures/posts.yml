@@ -26,6 +26,27 @@ most_recent:
   location: waltham
   rate: 4
 
+ants:
+  message: "Oh, is that what you want? Because that's how you get ants!"
+  created_at: <%= 2.years.ago %>
+  user: archer
+  location: waltham
+  rate: 4
+
+zone:
+  message: "Danger zone!"
+  created_at: <%= 3.days.ago %>
+  user: archer
+  location: waltham
+  rate: 4
+
+tone:
+  message: "I'm sorry. Your words made sense, but your sarcastic tone did not."
+  created_at: <%= 10.minutes.ago %>
+  user: lana
+  location: waltham
+  rate: 4
+
 <% 30.times do |n| %>
 post_<%= n %>:
   message: <%= Faker::Lorem.sentence(word_count: 5) %>

@@ -79,7 +79,7 @@ class UserTest < ActiveSupport::TestCase
   test "associated posts should be destroyed" do
     @user.save
     @location.save
-    @post = Post.new(message: "test", rate:3, user_id: @user.id, location_id: @location.id)
+    @post = Post.new(message: "test", rate:3, user_id: @user.id, location_id: @location.id) 
     @post.save
     assert_difference 'Post.count', -1 do
       @user.destroy

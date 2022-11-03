@@ -1,22 +1,37 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :correct_user,   only: :destroy
 
   def new
-    @user = current_user
+    @user = User.find(params[:user_id])
     @post = Post.new
   end 
 
+  def show
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:post_id])
+  end
+
   def create
-    @post = current_user.posts.build(post_params)
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new(post_params)
+
     if @post.save
       flash[:success] = "Post created!"
       redirect_to @current_user
     else
-      render 'main_pages/home', status: :unprocessable_entity
+      render 'new', status: :unprocessable_entity
     end
   end
 
   def destroy
+    @post.destroy
+    flash[:success] = "Post deleted"
+    if request.referrer.nil?
+      redirect_to root_url, status: :see_other
+    else
+      redirect_to request.referrer, status: :see_other
+    end
   end
 
   private
@@ -25,4 +40,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(:message, :location_id, :user_id)
   end
 
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_url, status: :see_other if @post.nil?
+  end
 end
