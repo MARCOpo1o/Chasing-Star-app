@@ -35,7 +35,8 @@ Route Name      Method  Url                        Controller          Descripti
 
 [Trello](https://trello.com/b/LLSmtsFl/app-development)
 
-
+## Prototype link
+[Figma](https://www.figma.com/proto/KOc5UqZg2ftcQqWEvJlc2Z/Chasing-Stars?node-id=203%3A1393&page-id=203%3A1392&starting-point-node-id=203%3A1393)
 
 ## Explaination of db Schema
 
@@ -135,6 +136,20 @@ Location <- Photo(location_id), Post(location_id)
 
 **Many to Many:**  
 User(location_id) <- UserLocation -> Location(user_id)
+
+## Views
+
+**Current Views**
+* user (a form to create new user / demonstrate a user and his posts)
+* session (login a user)
+* map (contains an embedded map and location cards, can redirect to locations by clicking them)
+* post (a form to create new post / show a post / delete a post)
+* location (show all locations)
+* home (Home page, contains navbar, an interactive calendar, and a search bar)
+
+**Planned Views**
+* profile (show a user's saved locations, posts and comments)
+* comment (show comments of a post)
 
 ## List of dependencies on APIs, gems, libraries
 
