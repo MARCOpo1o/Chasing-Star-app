@@ -2,9 +2,10 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   has_many :user_locations
   has_many :locations, through: :user_locations
-  has_many :photos
-  has_many :comments
-  has_many :posts
+  has_many :photos, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :posts, dependent: :destroy
+
   before_save { email.downcase! }
   validates :user_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -42,5 +43,11 @@ class User < ApplicationRecord
    # Forgets a user.
    def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 end

@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(user_name: "Example User", email: "user@example.com",
                      password: "foobar", password_confirmation: "foobar")
+    @location = locations(:waltham)
   end
 
   test "should be valid" do
@@ -73,6 +74,16 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
+  end
+  
+  test "associated posts should be destroyed" do
+    @user.save
+    @location.save
+    @post = Post.new(message: "test", rate:3, user_id: @user.id, location_id: @location.id) 
+    @post.save
+    assert_difference 'Post.count', -1 do
+      @user.destroy
+    end
   end
 
 end

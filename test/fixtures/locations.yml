@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  location_name: MyString
+waltham:
+  location_name: waltham
   coordinates:
   average_rate: 3.0
-  tag: [MyString]
+  tag: [Town]
 
-two:
-  location_name: MyString
+boston:
+  location_name: boston
   coordinates:
   average_rate: 4.0
-  tag: [MyString]
+  tag: [City]
  
