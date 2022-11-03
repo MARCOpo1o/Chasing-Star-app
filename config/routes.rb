@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
-  # get    "/map",     to: "maps#index"
+  get    "/map",     to: "maps#index"
   # get    "/post",    to: "posts#new"
   # post   "/post",    to: "posts#create"
 
