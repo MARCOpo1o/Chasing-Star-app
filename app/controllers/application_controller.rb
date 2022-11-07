@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
             redirect_to login_url, status: :see_other
         end
     end
+
+    def select_date
+        flash.alert = "test"
+        @selected_date = params[:selected_date]
+        flash.alert = @selected_date
+      end
 end

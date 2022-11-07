@@ -5,8 +5,9 @@ class MainPagesController < ApplicationController
   def explore
   end
 
-  def select_date
-    @selected_date = params[:selected_date]
-    flash.alert = @selected_date
-  end
+  # def select_date
+  #   flash.alert = "test"
+  #   @selected_date = params[:selected_date]
+  #   flash.alert = @selected_date
+  # end
 end
