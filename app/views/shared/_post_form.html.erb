@@ -1,8 +1,0 @@
-<%= form_with(model: @post) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :messgae, placeholder: "Compose new post..." %>
-    <%= f.number_field :location_id, placeholder: "1" %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-<% end %>
