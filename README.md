@@ -163,10 +163,10 @@ User(location_id) <- UserLocation -> Location(user_id)
 * Location API
 
 **Gems**
-* Faker
-* Bootstrap
-* Will_paginate
-* Simple_calendar
+* Faker: This gem is a port of Perl's Data::Faker library that generates fake data.
+* Bootstrap: The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.
+* Will_paginate: will_paginate is a pagination library that integrates with Ruby on Rails, Sinatra, Hanami::View, Merb, DataMapper and Sequel.
+* Simple_calendar: A calendar for your Ruby on Rails app.
 
 **Libraries**
 * Boostrap
