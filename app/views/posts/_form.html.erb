@@ -7,12 +7,15 @@
         <%= render 'shared/error_messages', object: f.object %>
 
         <%= f.label :messgae %>
-        <%= f.text_field :message, class: 'form-control' %>
+        <%= f.text_field :message, class: 'form-control', placeholder: "Compose new post..." %>
         
         <%= f.label :location_id %>
-        <%= f.number_field :location_id, class: 'form-control' %>
+        <%= f.number_field :location_id, class: 'form-control', placeholder: "1" %>
         
         <%= f.submit "Make a post", class: "btn btn-primary" %>
+        <span class="image">
+           <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+        </span>
     <% end %>
   </div>
 </div>

@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.new(post_params)
+    @post.image.attach(params[:post][:image])
 
     if @post.save
       flash[:success] = "Post created!"
@@ -37,7 +38,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:message, :location_id, :user_id)
+    params.require(:post).permit(:message, :location_id, :user_id, :image)
   end
 
   def correct_user
