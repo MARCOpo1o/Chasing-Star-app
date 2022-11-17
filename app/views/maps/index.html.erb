@@ -3,69 +3,73 @@
   <div class='col-sm-5'>
     <div class="container mx-auto mt-4">
       <div class="row">
-        <% 10.times do %>
-          <div class="col m-1">
-            <%= render 'maps/card' %>
-          </div>
-        <% end %>
+       <%= render @locations %>
       </div>
     </div>
   </div>
 
   <div class='col-sm-7'>
-    <div id='map_container'>
       <div id='map'></div>
-    </div>
   </div>
 </div>
 
-
 <script>
-  // The value for 'accessToken' begins with 'pk...'
-  mapboxgl.accessToken = 'pk.eyJ1IjoiamVyZW15aGVqaWFuIiwiYSI6ImNsOWdndjcyYjN2dnQzdnFtMDZ5NGszcnQifQ.rdIaJN_0FpyW2sKHhuIrEQ'; 
-  // use var instead of const to avoid conflicts with global variables
+  mapboxgl.accessToken = 'pk.eyJ1IjoiamluZ3FpYW5jaGVuZyIsImEiOiJjbGFlbTU1ZWwwZ3FwM25zenMxZzhydjUzIn0.2fja1yls22N_yqF0DiI2Vg';
+
   var map = new mapboxgl.Map({
     container: 'map',
-    // Replace YOUR_STYLE_URL with your style URL.
-    style: 'mapbox://styles/jeremyhejian/cl9glow5o000614o60oelhqh8', 
-    center: [-87.661557, 41.893748],
-    zoom: 10.7
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/dark-v10',
+    center: [-80, 34.51],
+    zoom: 4
   });
 
-  /* 
-    Add an event listener that runs
-    when a user clicks on the map element.
-  */
-  map.on('click', (event) => {
-    // If the user clicked on one of your markers, get its information.
-    const features = map.queryRenderedFeatures(event.point, {
-      layers: ['chicago-parks'] // replace with your layer name
-    });
-    if (!features.length) {
-      return;
-    }
-    const feature = features[0];
+  map.addControl(new mapboxgl.NavigationControl());
 
-    /* 
-      Create a popup, specify its options 
-      and properties, and add it to the map.
-    */
-    const popup = new mapboxgl.Popup({ offset: [0, -15] })
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML(
-        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+  var features_all = [
+    <% @locations.each do |location| %>
+      {'type': 'Feature',
+      'properties': {
+        'location_name': '<%= location.location_name %>',
+        'location_id': '<%= location.id %>',
+        },
+      'geometry':{
+        'type': 'Point',
+        'coordinates': [<%= location.longitude %>, <%= location.latitude %>]
+        }
+      },
+    <% end %>
+  ];
+
+  var geojson = {
+    'type': 'FeatureCollection',
+    'features': features_all
+  };
+
+  map.on('load', () => {
+
+    // Add markers to the map.
+    for (const marker of geojson.features) {
+    // Create a DOM element for each marker.
+      // const el = document.createElement('div');
+      // el.className = 'marker';
+      // el.style.backgroundImage = `url(<%= asset_path 'star.webp' %>)`;
+      // el.style.width = `30px`;
+      // el.style.height = `30px`;
+      // el.style.backgroundSize = '100%';
+  
+    // Add markers to the map.
+    new mapboxgl.Marker()
+      .setLngLat(marker.geometry.coordinates)
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(
+            `<h6>${marker.properties.location_name}</h6><a href='locations/${marker.properties.location_id}'>Link</a>`
+            
+          )
       )
       .addTo(map);
-    // Code from the next step will go here.
-  });
-
-  var containerElement = document.getElementById('container');
-  containerElement.style.paddingLeft = '0px';
-  containerElement.style.marginLeft = '0px';
-  containerElement.style.paddingRight = '0px';
-  containerElement.style.marginRight = '0px';
-
+    }
+  }); 
+  
 </script>
-
-
-

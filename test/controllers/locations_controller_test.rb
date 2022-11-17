@@ -3,6 +3,7 @@ require "test_helper"
 class LocationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @location = locations(:waltham)
+    @admin
   end
 
   test "should get index" do
@@ -25,11 +26,6 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show location" do
     get location_url(@location)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_location_url(@location)
     assert_response :success
   end
 

@@ -1,58 +1,31 @@
-<div class="row"> 
+<div id="<%= dom_id location %>" class="col-sm-6">
+  <div class="card" style="width: 18rem;">
+    <%= image_tag("star.jpg") %>
+    <%= image_tag location.image if location.image.attached? %>
+    <div class="card-body">
+      <h5 class="card-title"><%= location.location_name %></h5>
+      <div> <%= location.average_rate %> ★★★★☆ 11 Posts</div>
+      <div>[Park] [Mountain]</div>
+    </div>
 
-  <div id="<%= dom_id location %>" class="col-sm-6">
-    <div class="card" style="width: 18rem;">
-      <%= image_tag("star.jpg") %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Oct 20, 2022</li>
+      <li class="list-group-item">✦ Clear</li>
+      <li class="list-group-item">H:20 L:12</li>
+    </ul>
 
-      <div class="card-body">
-        <h5 class="card-title"><%= location.location_name %></h5>
-        <div> <%= location.average_rate %> ★★★★☆ 11 Posts</div>
-        <div>[Park] [Mountain]</div>
-      </div>
-
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Oct 20, 2022</li>
-        <li class="list-group-item">✦ Clear</li>
-        <li class="list-group-item">H:20 L:12</li>
-      </ul>
-
-      <div class="card-body">
-          <small>77/100</small>
-      </div>
-      <hr/>
-      <div class="card-body">
-          <%= link_to "Show in map", '#' %>
-          <%= link_to "Save the place", '#' %>
-          <%= link_to "Share", '#' %>
-      </div>
+    <div class="card-body">
+        <small>77/100</small>
+    </div>
+    <hr/>
+    <div class="card-body">
+        <%= link_to "Show", location %>
+        <%= link_to "Save", '#' %>
+        <%= link_to "Share", '#' %>
     </div>
   </div>
-
-  <div class="col-sm-6">
-    
-      <div class="card" style="width: 10rem;">
-        <%= image_tag("star.jpg") %>
-        <div class="card-body">
-          <h5 class="card-title">Post by A</h5>
-          <%= link_to "Show Post", '#' %>
-        </div>
-      </div>
-      <div class="card" style="width: 10rem;">
-        <%= image_tag("star.jpg") %>
-        <div class="card-body">
-          <h5 class="card-title">Post by B</h5>
-          <%= link_to "Show Post", '#' %>
-        </div>
-      </div>
-      <div class="card" style="width: 10rem;">
-        <%= image_tag("star.jpg") %>
-        <div class="card-body">
-          <h5 class="card-title">Post by C</h5>
-          <%= link_to "Show Post", '#' %>
-        </div>
-      </div>
-    
-  </div>
 </div>
+
+
 
 

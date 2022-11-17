@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: %i[ show edit update destroy ]
+  before_action :admin_user,     only: :edit
 
   # GET /locations or /locations.json
   def index
@@ -17,6 +18,8 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+    @location = Location.find(params[:id])
+    # @location.image.attach(params[:location][:image])
   end
 
   # POST /locations or /locations.json
@@ -65,7 +68,11 @@ class LocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.require(:location).permit(:location_name, :average_rate)
+      params.require(:location).permit(:location_name, :average_rate, :image)
+    end
+
+    def admin_user
+      redirect_to root_url, status: :see_other unless current_user && current_user.admin?
     end
 end
  

@@ -1,11 +1,17 @@
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @location %>
 
 <div>
-  <%= link_to "Edit this location", edit_location_path(@location) %> |
-  <%= link_to "Back to locations", locations_path %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to "Edit", edit_location_path(@location) %> |
+    <%= link_to "Delete", @location, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %> |
+  <% end %>
+  
+  <%= link_to "Back to map", map_path %>
 
-  <%= button_to "Destroy this location", @location, method: :delete %>
 </div>
+
+
  
