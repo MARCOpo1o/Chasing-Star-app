@@ -1,6 +1,7 @@
 <li id="post-<%= post.id %>">
   <%= link_to gravatar_for(post.user, size: 50), post.user %>
   <span class="user"><%= link_to post.user.user_name, post.user %></span>
+  <div><%= link_to "Post Link", user_post_path(post.user,post) %></div>
   <span class="message">
     <%= post.message %>
     <% if post.image.attached? %>

@@ -38,7 +38,7 @@ end
 
 #posts
 (1..10).each do 
-    Post.create(message: Faker::SlackEmoji.nature, rate: Faker::Number.between(from: 1, to: 10), user_id: Faker::Number.number(digits: 1), location_id: Faker::Number.number(digits: 1))
+    Post.create(message: Faker::SlackEmoji.nature, rate: Faker::Number.between(from: 1, to: 5), user_id: Faker::Number.number(digits: 1), location_id: Faker::Number.number(digits: 1))
 end
 
 #photos
@@ -87,6 +87,6 @@ end
 users = User.order(:created_at).take(6)
 50.times do
   message = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.posts.create!(message: message, location_id: 1) }
+  users.each { |user| user.posts.create!(message: message, rate: Faker::Number.between(from: 1, to: 5), location_id: 1) }
 end
 

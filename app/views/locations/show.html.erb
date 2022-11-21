@@ -1,15 +1,58 @@
 
 <p style="color: green"><%= notice %></p>
 
-<%= render @location %>
+<div class="row">
+  <div id="<%= dom_id @location %>" class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <%= image_tag("star.jpg") %>
+      <%= image_tag @location.image if @location.image.attached? %>
+      <div class="card-body">
+        <h5 class="card-title"><%= @location.location_name %></h5>
+        <div> <%= @location.average_rate %> ★★★★☆ 11 Posts</div>
+        <div>[Park] [Mountain]</div>
+      </div>
 
-<div>
-  <% if current_user && current_user.admin? %>
-    <%= link_to "Edit", edit_location_path(@location) %> |
-    <%= link_to "Delete", @location, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %> |
-  <% end %>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Oct 20, 2022</li>
+        <li class="list-group-item">✦ Clear</li>
+        <li class="list-group-item">H:20 L:12</li>
+      </ul>
+
+      <div class="card-body">
+          <small>77/100</small>
+      </div>
+      <hr/>
+      <% if !current_user.nil? %>
+        <div class="card-body">
+            <%= link_to "Make a post",  new_user_post_path(@user, location_id: @location.id) %>
+        </div>
+        <% else %>
+        <div class="card-body">
+            <%= link_to "Sign in to make a post",  login_path %> 
+        </div>
+      <% end %> 
+    </div>
+
+    <div>
+      <% if current_user && current_user.admin? %>
+        <%= link_to "Edit", edit_location_path(@location) %> |
+        <%= link_to "Delete", @location, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %> |
+      <% end %>
+      <%= link_to "Back to map", map_path %>
+    </div>
+  </div>
+
   
-  <%= link_to "Back to map", map_path %>
+  <div class="col-md-4">
+    
+      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+        <h3>Posts (<%= @location.posts.count %>)</h3> 
+        <ol class="posts">
+          <%= render @posts %> 
+        </ol>     
+      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    
+  </div>
 
 </div>
 

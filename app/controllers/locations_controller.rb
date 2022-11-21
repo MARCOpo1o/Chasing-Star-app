@@ -9,6 +9,10 @@ class LocationsController < ApplicationController
 
   # GET /locations/1 or /locations/1.json
   def show
+    @location = Location.find(params[:id])
+    @user = current_user
+    @posts = @location.posts.paginate(page: params[:page])
+    session[:return_to] = request.referrer
   end
 
   # GET /locations/new

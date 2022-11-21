@@ -6,11 +6,20 @@
     <%= form_with(model: @post, url: [user, post]) do |f| %> 
         <%= render 'shared/error_messages', object: f.object %>
 
+        <%= f.label :location_name %>
+        <div>
+          <%= location&.location_name%>
+        </div>
+
+        <hr/>
+
         <%= f.label :messgae %>
         <%= f.text_field :message, class: 'form-control', placeholder: "Compose new post..." %>
         
-        <%= f.label :location_id %>
-        <%= f.number_field :location_id, class: 'form-control', placeholder: "1" %>
+        <%= f.hidden_field :location_id, class: 'form-control', placeholder: '@location.id', value: location&.id %> 
+
+        <%= f.label :rate %>
+        <%= f.number_field :rate, class: 'form-control', placeholder: "Rate this place" %>
         
         <%= f.submit "Make a post", class: "btn btn-primary" %>
         <span class="image">
