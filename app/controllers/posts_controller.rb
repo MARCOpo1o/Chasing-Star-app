@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user,   only: :destroy
-
+ 
   def new
     @user = User.find(params[:user_id])
     @post = Post.new

@@ -15,6 +15,7 @@
 # LightPollution.create(pollution_index:50, location_id:1)
 
 require 'faker'
+require 'json'
 
 #test user
 User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
@@ -25,9 +26,15 @@ User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa
 end
 
 #locations
-(1..10).each do 
-    Location.create(location_name: Faker::Address.city, average_rate: Faker::Number.decimal(l_digits: 1))
+national_parks = File.read(File.join(Rails.root, 'app', 'assets', 'dataset', 'national_parks.json'))
+national_parks_hash = JSON.parse(national_parks)
+national_parks_hash.each do |park|
+    Location.create(location_name: park['park_name'], average_rate: Faker::Number.decimal(l_digits: 1), 
+    latitude: park['latitude'], longitude: park['longitude'])
 end
+# (1..10).each do 
+#     Location.create(location_name: Faker::Address.city, average_rate: Faker::Number.decimal(l_digits: 1))
+# end
 
 #posts
 (1..10).each do 

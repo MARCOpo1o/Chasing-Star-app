@@ -5,4 +5,5 @@ class Location < ApplicationRecord
     has_many :weathers
     has_many :posts, dependent: :destroy
     has_many :photos, dependent: :destroy
+    has_one_attached :image
 end

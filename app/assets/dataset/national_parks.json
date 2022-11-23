@@ -1,0 +1,450 @@
+[
+  {
+    "park_code": "ACAD",
+    "park_name": "Acadia National Park",
+    "state": "ME",
+    "acres": 47390,
+    "latitude": 44.35,
+    "longitude": -68.21
+  },
+  {
+    "park_code": "ARCH",
+    "park_name": "Arches National Park",
+    "state": "UT",
+    "acres": 76519,
+    "latitude": 38.68,
+    "longitude": -109.57
+  },
+  {
+    "park_code": "BADL",
+    "park_name": "Badlands National Park",
+    "state": "SD",
+    "acres": 242756,
+    "latitude": 43.75,
+    "longitude": -102.5
+  },
+  {
+    "park_code": "BIBE",
+    "park_name": "Big Bend National Park",
+    "state": "TX",
+    "acres": 801163,
+    "latitude": 29.25,
+    "longitude": -103.25
+  },
+  {
+    "park_code": "BISC",
+    "park_name": "Biscayne National Park",
+    "state": "FL",
+    "acres": 172924,
+    "latitude": 25.65,
+    "longitude": -80.08
+  },
+  {
+    "park_code": "BLCA",
+    "park_name": "Black Canyon of the Gunnison National Park",
+    "state": "CO",
+    "acres": 32950,
+    "latitude": 38.57,
+    "longitude": -107.72
+  },
+  {
+    "park_code": "BRCA",
+    "park_name": "Bryce Canyon National Park",
+    "state": "UT",
+    "acres": 35835,
+    "latitude": 37.57,
+    "longitude": -112.18
+  },
+  {
+    "park_code": "CANY",
+    "park_name": "Canyonlands National Park",
+    "state": "UT",
+    "acres": 337598,
+    "latitude": 38.2,
+    "longitude": -109.93
+  },
+  {
+    "park_code": "CARE",
+    "park_name": "Capitol Reef National Park",
+    "state": "UT",
+    "acres": 241904,
+    "latitude": 38.2,
+    "longitude": -111.17
+  },
+  {
+    "park_code": "CAVE",
+    "park_name": "Carlsbad Caverns National Park",
+    "state": "NM",
+    "acres": 46766,
+    "latitude": 32.17,
+    "longitude": -104.44
+  },
+  {
+    "park_code": "CHIS",
+    "park_name": "Channel Islands National Park",
+    "state": "CA",
+    "acres": 249561,
+    "latitude": 34.01,
+    "longitude": -119.42
+  },
+  {
+    "park_code": "CONG",
+    "park_name": "Congaree National Park",
+    "state": "SC",
+    "acres": 26546,
+    "latitude": 33.78,
+    "longitude": -80.78
+  },
+  {
+    "park_code": "CRLA",
+    "park_name": "Crater Lake National Park",
+    "state": "OR",
+    "acres": 183224,
+    "latitude": 42.94,
+    "longitude": -122.1
+  },
+  {
+    "park_code": "CUVA",
+    "park_name": "Cuyahoga Valley National Park",
+    "state": "OH",
+    "acres": 32950,
+    "latitude": 41.24,
+    "longitude": -81.55
+  },
+  {
+    "park_code": "DENA",
+    "park_name": "Denali National Park and Preserve",
+    "state": "AK",
+    "acres": 3372402,
+    "latitude": 63.33,
+    "longitude": -150.5
+  },
+  {
+    "park_code": "DEVA",
+    "park_name": "Death Valley National Park",
+    "state": "CA, NV",
+    "acres": 4740912,
+    "latitude": 36.24,
+    "longitude": -116.82
+  },
+  {
+    "park_code": "DRTO",
+    "park_name": "Dry Tortugas National Park",
+    "state": "FL",
+    "acres": 64701,
+    "latitude": 24.63,
+    "longitude": -82.87
+  },
+  {
+    "park_code": "EVER",
+    "park_name": "Everglades National Park",
+    "state": "FL",
+    "acres": 1508538,
+    "latitude": 25.32,
+    "longitude": -80.93
+  },
+  {
+    "park_code": "GAAR",
+    "park_name": "Gates Of The Arctic National Park and Preserve",
+    "state": "AK",
+    "acres": 7523898,
+    "latitude": 67.78,
+    "longitude": -153.3
+  },
+  {
+    "park_code": "GLAC",
+    "park_name": "Glacier National Park",
+    "state": "MT",
+    "acres": 1013572,
+    "latitude": 48.8,
+    "longitude": -114
+  },
+  {
+    "park_code": "GLBA",
+    "park_name": "Glacier Bay National Park and Preserve",
+    "state": "AK",
+    "acres": 3224840,
+    "latitude": 58.5,
+    "longitude": -137
+  },
+  {
+    "park_code": "GRBA",
+    "park_name": "Great Basin National Park",
+    "state": "NV",
+    "acres": 77180,
+    "latitude": 38.98,
+    "longitude": -114.3
+  },
+  {
+    "park_code": "GRCA",
+    "park_name": "Grand Canyon National Park",
+    "state": "AZ",
+    "acres": 1217403,
+    "latitude": 36.06,
+    "longitude": -112.14
+  },
+  {
+    "park_code": "GRSA",
+    "park_name": "Great Sand Dunes National Park and Preserve",
+    "state": "CO",
+    "acres": 42984,
+    "latitude": 37.73,
+    "longitude": -105.51
+  },
+  {
+    "park_code": "GRSM",
+    "park_name": "Great Smoky Mountains National Park",
+    "state": "TN, NC",
+    "acres": 521490,
+    "latitude": 35.68,
+    "longitude": -83.53
+  },
+  {
+    "park_code": "GRTE",
+    "park_name": "Grand Teton National Park",
+    "state": "WY",
+    "acres": 309995,
+    "latitude": 43.73,
+    "longitude": -110.8
+  },
+  {
+    "park_code": "GUMO",
+    "park_name": "Guadalupe Mountains National Park",
+    "state": "TX",
+    "acres": 86416,
+    "latitude": 31.92,
+    "longitude": -104.87
+  },
+  {
+    "park_code": "HALE",
+    "park_name": "Haleakala National Park",
+    "state": "HI",
+    "acres": 29094,
+    "latitude": 20.72,
+    "longitude": -156.17
+  },
+  {
+    "park_code": "HAVO",
+    "park_name": "Hawaii Volcanoes National Park",
+    "state": "HI",
+    "acres": 323431,
+    "latitude": 19.38,
+    "longitude": -155.2
+  },
+  {
+    "park_code": "HOSP",
+    "park_name": "Hot Springs National Park",
+    "state": "AR",
+    "acres": 5550,
+    "latitude": 34.51,
+    "longitude": -93.05
+  },
+  {
+    "park_code": "ISRO",
+    "park_name": "Isle Royale National Park",
+    "state": "MI",
+    "acres": 571790,
+    "latitude": 48.1,
+    "longitude": -88.55
+  },
+  {
+    "park_code": "JOTR",
+    "park_name": "Joshua Tree National Park",
+    "state": "CA",
+    "acres": 789745,
+    "latitude": 33.79,
+    "longitude": -115.9
+  },
+  {
+    "park_code": "KATM",
+    "park_name": "Katmai National Park and Preserve",
+    "state": "AK",
+    "acres": 3674530,
+    "latitude": 58.5,
+    "longitude": -155
+  },
+  {
+    "park_code": "KEFJ",
+    "park_name": "Kenai Fjords National Park",
+    "state": "AK",
+    "acres": 669983,
+    "latitude": 59.92,
+    "longitude": -149.65
+  },
+  {
+    "park_code": "KOVA",
+    "park_name": "Kobuk Valley National Park",
+    "state": "AK",
+    "acres": 1750717,
+    "latitude": 67.55,
+    "longitude": -159.28
+  },
+  {
+    "park_code": "LACL",
+    "park_name": "Lake Clark National Park and Preserve",
+    "state": "AK",
+    "acres": 2619733,
+    "latitude": 60.97,
+    "longitude": -153.42
+  },
+  {
+    "park_code": "LAVO",
+    "park_name": "Lassen Volcanic National Park",
+    "state": "CA",
+    "acres": 106372,
+    "latitude": 40.49,
+    "longitude": -121.51
+  },
+  {
+    "park_code": "MACA",
+    "park_name": "Mammoth Cave National Park",
+    "state": "KY",
+    "acres": 52830,
+    "latitude": 37.18,
+    "longitude": -86.1
+  },
+  {
+    "park_code": "MEVE",
+    "park_name": "Mesa Verde National Park",
+    "state": "CO",
+    "acres": 52122,
+    "latitude": 37.18,
+    "longitude": -108.49
+  },
+  {
+    "park_code": "MORA",
+    "park_name": "Mount Rainier National Park",
+    "state": "WA",
+    "acres": 235625,
+    "latitude": 46.85,
+    "longitude": -121.75
+  },
+  {
+    "park_code": "NOCA",
+    "park_name": "North Cascades National Park",
+    "state": "WA",
+    "acres": 504781,
+    "latitude": 48.7,
+    "longitude": -121.2
+  },
+  {
+    "park_code": "OLYM",
+    "park_name": "Olympic National Park",
+    "state": "WA",
+    "acres": 922651,
+    "latitude": 47.97,
+    "longitude": -123.5
+  },
+  {
+    "park_code": "PEFO",
+    "park_name": "Petrified Forest National Park",
+    "state": "AZ",
+    "acres": 93533,
+    "latitude": 35.07,
+    "longitude": -109.78
+  },
+  {
+    "park_code": "PINN",
+    "park_name": "Pinnacles National Park",
+    "state": "CA",
+    "acres": 26606,
+    "latitude": 36.48,
+    "longitude": -121.16
+  },
+  {
+    "park_code": "REDW",
+    "park_name": "Redwood National Park",
+    "state": "CA",
+    "acres": 112512,
+    "latitude": 41.3,
+    "longitude": -124
+  },
+  {
+    "park_code": "ROMO",
+    "park_name": "Rocky Mountain National Park",
+    "state": "CO",
+    "acres": 265828,
+    "latitude": 40.4,
+    "longitude": -105.58
+  },
+  {
+    "park_code": "SAGU",
+    "park_name": "Saguaro National Park",
+    "state": "AZ",
+    "acres": 91440,
+    "latitude": 32.25,
+    "longitude": -110.5
+  },
+  {
+    "park_code": "SEKI",
+    "park_name": "Sequoia and Kings Canyon National Parks",
+    "state": "CA",
+    "acres": 865952,
+    "latitude": 36.43,
+    "longitude": -118.68
+  },
+  {
+    "park_code": "SHEN",
+    "park_name": "Shenandoah National Park",
+    "state": "VA",
+    "acres": 199045,
+    "latitude": 38.53,
+    "longitude": -78.35
+  },
+  {
+    "park_code": "THRO",
+    "park_name": "Theodore Roosevelt National Park",
+    "state": "ND",
+    "acres": 70447,
+    "latitude": 46.97,
+    "longitude": -103.45
+  },
+  {
+    "park_code": "VOYA",
+    "park_name": "Voyageurs National Park",
+    "state": "MN",
+    "acres": 218200,
+    "latitude": 48.5,
+    "longitude": -92.88
+  },
+  {
+    "park_code": "WICA",
+    "park_name": "Wind Cave National Park",
+    "state": "SD",
+    "acres": 28295,
+    "latitude": 43.57,
+    "longitude": -103.48
+  },
+  {
+    "park_code": "WRST",
+    "park_name": "Wrangell - St Elias National Park and Preserve",
+    "state": "AK",
+    "acres": 8323148,
+    "latitude": 61,
+    "longitude": -142
+  },
+  {
+    "park_code": "YELL",
+    "park_name": "Yellowstone National Park",
+    "state": "WY, MT, ID",
+    "acres": 2219791,
+    "latitude": 44.6,
+    "longitude": -110.5
+  },
+  {
+    "park_code": "YOSE",
+    "park_name": "Yosemite National Park",
+    "state": "CA",
+    "acres": 761266,
+    "latitude": 37.83,
+    "longitude": -119.5
+  },
+  {
+    "park_code": "ZION",
+    "park_name": "Zion National Park",
+    "state": "UT",
+    "acres": 146598,
+    "latitude": 37.3,
+    "longitude": -113.05
+  }
+]

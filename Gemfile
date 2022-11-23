@@ -12,6 +12,8 @@ gem "image_processing",           "1.12.2"
 
 gem "bcrypt", "3.1.18"
 
+gem 'json'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
