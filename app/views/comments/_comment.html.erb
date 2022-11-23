@@ -1,0 +1,22 @@
+
+<div class="row border">
+    <li id="comment-<%= comment.id %>">
+        <div>
+            <%= link_to comment.user.user_name, comment.user %>
+        </div>
+    
+        <div>
+            <%= comment.message %>
+        </div>
+
+        <div>
+            Commented <%= time_ago_in_words(comment.created_at) %> ago. 
+        </div>
+        <% if current_user?(comment.user) %>
+            <%= link_to "delete", user_post_comment_path(@user, @post, comment), data: { "turbo-method": :delete,
+                                                        turbo_confirm: "You sure?" } %>
+        <% end %>
+    </li>
+</div>  
+  
+  

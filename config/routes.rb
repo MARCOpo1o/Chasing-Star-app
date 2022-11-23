@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :locations
   resources :photos
   resources :users do
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
   resources :user_locations
   resources :maps

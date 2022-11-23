@@ -4,22 +4,27 @@ class PostsController < ApplicationController
  
   def new
     @user = User.find(params[:user_id])
+    @location = Location.find(params[:location_id])
     @post = Post.new
   end 
 
   def show
     @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
+    @comments = @post.comments.paginate(page: params[:page])
   end
 
   def create
     @user = User.find(params[:user_id])
+    @location = Location.find(session[:current_location_id])
     @post = @user.posts.new(post_params)
     @post.image.attach(params[:post][:image])
+    
 
     if @post.save
+      session.delete(:current_location_id)
       flash[:success] = "Post created!"
-      redirect_to @current_user
+      redirect_to @post.location
     else
       render 'new', status: :unprocessable_entity
     end
@@ -38,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:message, :location_id, :user_id, :image)
+    params.require(:post).permit(:message, :location_id, :user_id, :image, :rate)
   end
 
   def correct_user
