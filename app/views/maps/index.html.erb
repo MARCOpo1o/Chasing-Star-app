@@ -13,59 +13,12 @@
   </div>
 
   <div class='col-sm-7'>
-    <div id='map_container'>
-      <div id='map'></div>
-    </div>
+    <%= render 'maps/map' %>
   </div>
 </div>
 
 
-<script>
-  // The value for 'accessToken' begins with 'pk...'
-  mapboxgl.accessToken = 'pk.eyJ1IjoiamVyZW15aGVqaWFuIiwiYSI6ImNsOWdndjcyYjN2dnQzdnFtMDZ5NGszcnQifQ.rdIaJN_0FpyW2sKHhuIrEQ'; 
-  // use var instead of const to avoid conflicts with global variables
-  var map = new mapboxgl.Map({
-    container: 'map',
-    // Replace YOUR_STYLE_URL with your style URL.
-    style: 'mapbox://styles/jeremyhejian/cl9glow5o000614o60oelhqh8', 
-    center: [-87.661557, 41.893748],
-    zoom: 10.7
-  });
 
-  /* 
-    Add an event listener that runs
-    when a user clicks on the map element.
-  */
-  map.on('click', (event) => {
-    // If the user clicked on one of your markers, get its information.
-    const features = map.queryRenderedFeatures(event.point, {
-      layers: ['chicago-parks'] // replace with your layer name
-    });
-    if (!features.length) {
-      return;
-    }
-    const feature = features[0];
-
-    /* 
-      Create a popup, specify its options 
-      and properties, and add it to the map.
-    */
-    const popup = new mapboxgl.Popup({ offset: [0, -15] })
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML(
-        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
-      )
-      .addTo(map);
-    // Code from the next step will go here.
-  });
-
-  var containerElement = document.getElementById('container');
-  containerElement.style.paddingLeft = '0px';
-  containerElement.style.marginLeft = '0px';
-  containerElement.style.paddingRight = '0px';
-  containerElement.style.marginRight = '0px';
-
-</script>
 
 
 

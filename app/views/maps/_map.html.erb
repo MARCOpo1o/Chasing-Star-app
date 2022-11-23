@@ -1,18 +1,14 @@
+<div id='map_container'>
+  <div id='map'></div>
+</div>
+
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
-<style>
-  #map { 
-    /* position: absolute;  */
-    top: 10; 
-    bottom: 0; 
-    width: 300px;
-    height: 300px;
-  }
-</style>
 <script>
   // The value for 'accessToken' begins with 'pk...'
   mapboxgl.accessToken = 'pk.eyJ1IjoiamVyZW15aGVqaWFuIiwiYSI6ImNsOWdndjcyYjN2dnQzdnFtMDZ5NGszcnQifQ.rdIaJN_0FpyW2sKHhuIrEQ'; 
-  const map = new mapboxgl.Map({
+  // use var instead of const to avoid conflicts with global variables
+  var map = new mapboxgl.Map({
     container: 'map',
     // Replace YOUR_STYLE_URL with your style URL.
     style: 'mapbox://styles/jeremyhejian/cl9glow5o000614o60oelhqh8', 
@@ -41,9 +37,23 @@
     const popup = new mapboxgl.Popup({ offset: [0, -15] })
       .setLngLat(feature.geometry.coordinates)
       .setHTML(
-        `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+        `
+          <h5 class="card-title">${feature.properties.title}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${feature.properties.title}</h6>
+          <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
+          <p class="card-text">${feature.properties.description}</p>
+          <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit</a>
+          <a href="#" class="btn "><i class="fab fa-github"></i> Add</a>
+        `
       )
       .addTo(map);
     // Code from the next step will go here.
-});
+  });
+
+  var containerElement = document.getElementById('container');
+  containerElement.style.paddingLeft = '0px';
+  containerElement.style.marginLeft = '0px';
+  containerElement.style.paddingRight = '0px';
+  containerElement.style.marginRight = '0px';
+
 </script>
