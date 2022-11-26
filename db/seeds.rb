@@ -17,54 +17,33 @@
 require 'faker'
 require 'json'
 
-#test user
-User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
-
-#users
-(1..10).each do 
-    User.create(user_name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password)
-end
-
 #locations
 national_parks = File.read(File.join(Rails.root, 'app', 'assets', 'dataset', 'national_parks.json'))
 national_parks_hash = JSON.parse(national_parks)
 national_parks_hash.each do |park|
-    Location.create(location_name: park['park_name'], average_rate: Faker::Number.decimal(l_digits: 1), 
-    latitude: park['latitude'], longitude: park['longitude'])
-end
-# (1..10).each do 
-#     Location.create(location_name: Faker::Address.city, average_rate: Faker::Number.decimal(l_digits: 1))
-# end
-
-#posts
-(1..10).each do 
-    Post.create(message: Faker::SlackEmoji.nature, rate: Faker::Number.between(from: 1, to: 5), user_id: Faker::Number.number(digits: 1), location_id: Faker::Number.number(digits: 1))
-end
-
-#photos
-(1..10).each do 
-    Photo.create(image_url: Faker::Internet.url(host: 'example.com'), user_id: Faker::Number.number(digits: 1), post_id: Faker::Number.number(digits: 1), location_id:Faker::Number.number(digits: 1))
-end
-
-#comments
-(1..10).each do 
-    Comment.create(message: Faker::SlackEmoji.nature, user_id: Faker::Number.number(digits: 1), post_id: Faker::Number.number(digits: 1))
+    Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'])
 end
 
 #weathers
-(1..10).each do 
-    Weather.create(weather_type: "Sunny", location_id: Faker::Number.number(digits: 1))
+for i in 1..10 do
+    Weather.create(weather_type: "Clear", location_id: i, date: Date.today)
+end
+
+for i in 1..10 do
+    Weather.create(weather_type: "Rain", location_id: i, date: Date.today + 1)
 end
 
 #LightPollution
-(1..10).each do 
-    LightPollution.create(pollution_index: Faker::Number.number(digits: 3), location_id: Faker::Number.number(digits: 1))
+for i in 1..10 do
+    LightPollution.create(pollution_index: Faker::Number.number(digits: 2), location_id: i, date: Date.today)
 end
 
-#user_locations
-(1..10).each do 
-    UserLocation.create(user_id: Faker::Number.number(digits: 1), location_id: Faker::Number.number(digits: 1))
+for i in 1..10 do
+    LightPollution.create(pollution_index: Faker::Number.number(digits: 2), location_id: i, date: Date.today + 1)
 end
+
+#test user
+User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
 
 # Create a main sample user.
 User.create!(user_name:  "Example User",
@@ -84,9 +63,15 @@ User.create!(user_name:  name,
       password_confirmation: password)
 end
 # Generate posts for a subset of users.
-users = User.order(:created_at).take(6)
-50.times do
-  message = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.posts.create!(message: message, rate: Faker::Number.between(from: 1, to: 5), location_id: 1) }
+users = User.order(:created_at).take(30)
+10.times do
+  message = Faker::Lorem.sentence(word_count: 10)
+  users.each { |user| user.posts.create!(message: message, rate: Faker::Number.between(from: 1, to: 5), location_id: Faker::Number.between(from: 1, to: 10)) }
 end
+
+10.times do
+  comment = Faker::Lorem.sentence(word_count: 10) 
+  users.each { |user| user.comments.create!(message: comment, post_id: Faker::Number.between(from: 1, to: 300)) }   
+end
+
 

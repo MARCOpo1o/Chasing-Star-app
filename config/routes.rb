@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   # get    "/post",    to: "posts#new"
   # post   "/post",    to: "posts#create"
 
-  resources :locations
+  resources :locations do
+    collection do
+      get 'search'
+      get 'do_search'
+    end
+  end
   resources :photos
   resources :users do
     resources :posts do
