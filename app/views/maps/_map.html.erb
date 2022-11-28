@@ -1,0 +1,74 @@
+<div id='map_container'>
+  <div id='map'></div>
+</div>
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+<script>
+  // The value for 'accessToken' begins with 'pk...'
+  mapboxgl.accessToken = 'pk.eyJ1IjoiamVyZW15aGVqaWFuIiwiYSI6ImNsOWdndjcyYjN2dnQzdnFtMDZ5NGszcnQifQ.rdIaJN_0FpyW2sKHhuIrEQ'; 
+  // use var instead of const to avoid conflicts with global variables
+  var map = new mapboxgl.Map({
+    container: 'map',
+    // Replace YOUR_STYLE_URL with your style URL.
+    style: 'mapbox://styles/mapbox/dark-v10',
+    center: [-80, 34.51],
+    zoom: 4
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  var features_all = [
+    <% @locations.each do |location| %>
+      {'type': 'Feature',
+      'properties': {
+        'location_name': '<%= location.location_name %>',
+        'location_id': '<%= location.id %>',
+        },
+      'geometry':{
+        'type': 'Point',
+        'coordinates': [<%= location.longitude %>, <%= location.latitude %>]
+        }
+      },
+    <% end %>
+  ];
+
+  var geojson = {
+    'type': 'FeatureCollection',
+    'features': features_all
+  };
+
+  map.on('load', () => {
+
+    // Add markers to the map.
+    for (const marker of geojson.features) {
+    // Create a DOM element for each marker.
+      // const el = document.createElement('div');
+      // el.className = 'marker';
+      // el.style.backgroundImage = `url(<%= asset_path 'star.webp' %>)`;
+      // el.style.width = `30px`;
+      // el.style.height = `30px`;
+      // el.style.backgroundSize = '100%';
+  
+    // Add markers to the map.
+    new mapboxgl.Marker()
+      .setLngLat(marker.geometry.coordinates)
+      .setPopup(
+        new mapboxgl.Popup({ offset: [0, -25] }) // add popups
+          .setHTML(
+            `
+            <h5 class="card-title">${marker.properties.location_name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">${marker.properties.location_name}</h6>
+            <img src="https://images.unsplash.com/photo-1505322022379-7c3353ee6291?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=220&q=80" alt="...">
+            <a href="locations/${marker.properties.location_id}" class="btn mr-2"><i class="fas fa-link"></i> Link</a>
+            <a href="locations/${marker.properties.location_id}" class="btn mr-2"><i class="fas fa-link"></i> Link</a>
+            `
+            
+            
+          )
+      )
+      .addTo(map);
+    }
+  }); 
+
+</script>
