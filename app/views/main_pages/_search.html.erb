@@ -4,7 +4,7 @@
         <label>Location Name</label>
         <%= text_field_tag(:location_name, nil, placeholder: 'Acadia National Park') %>
         <label>Date</label>
-        <%= date_field_tag(:date) %>
+        <%= date_field_tag(:date, Date.today, id: "date_form") %>
       <%= submit_tag("Search") %>
     <% end %>
   </div>
