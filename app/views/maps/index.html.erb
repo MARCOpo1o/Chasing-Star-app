@@ -9,67 +9,11 @@
   </div>
 
   <div class='col-sm-7'>
-      <div id='map'></div>
+    <%= render 'maps/map' %>
   </div>
 </div>
 
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoiamluZ3FpYW5jaGVuZyIsImEiOiJjbGFlbTU1ZWwwZ3FwM25zenMxZzhydjUzIn0.2fja1yls22N_yqF0DiI2Vg';
-
-  var map = new mapboxgl.Map({
-    container: 'map',
-    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-    style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-80, 34.51],
-    zoom: 4
-  });
-
-  map.addControl(new mapboxgl.NavigationControl());
-
-  var features_all = [
-    <% @locations.each do |location| %>
-      {'type': 'Feature',
-      'properties': {
-        'location_name': '<%= location.location_name %>',
-        'location_id': '<%= location.id %>',
-        },
-      'geometry':{
-        'type': 'Point',
-        'coordinates': [<%= location.longitude %>, <%= location.latitude %>]
-        }
-      },
-    <% end %>
-  ];
-
-  var geojson = {
-    'type': 'FeatureCollection',
-    'features': features_all
-  };
-
-  map.on('load', () => {
-
-    // Add markers to the map.
-    for (const marker of geojson.features) {
-    // Create a DOM element for each marker.
-      // const el = document.createElement('div');
-      // el.className = 'marker';
-      // el.style.backgroundImage = `url(<%= asset_path 'star.webp' %>)`;
-      // el.style.width = `30px`;
-      // el.style.height = `30px`;
-      // el.style.backgroundSize = '100%';
-  
-    // Add markers to the map.
-    new mapboxgl.Marker()
-      .setLngLat(marker.geometry.coordinates)
-      .setPopup(
-        new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML(
-            `<h6>${marker.properties.location_name}</h6><a href='locations/${marker.properties.location_id}'>Link</a>`
-            
-          )
-      )
-      .addTo(map);
-    }
-  }); 
-  
+  var footer = document.getElementById("div-footer");
+  footer.style.display = "none";
 </script>
