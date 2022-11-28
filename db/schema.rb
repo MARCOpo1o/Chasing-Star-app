@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_26_025222) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_023112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_025222) do
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_light_pollutions_on_date"
+    t.index ["location_id"], name: "index_light_pollutions_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_025222) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.index ["location_name"], name: "index_locations_on_location_name"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -124,6 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_025222) do
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_weathers_on_date"
+    t.index ["location_id"], name: "index_weathers_on_location_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

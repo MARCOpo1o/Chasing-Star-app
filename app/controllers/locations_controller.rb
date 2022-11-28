@@ -69,7 +69,7 @@ class LocationsController < ApplicationController
   end
 
   def do_search
-    @locations = Location.where("location_name LIKE ?", "%#{params[:location_name]}%")
+    @locations = Location.where("location_name ILIKE ?", "%#{params[:location_name]}%")
     render :index
   end
 
