@@ -8,14 +8,14 @@
       <%= image_tag @location.image if @location.image.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= @location.location_name %></h5>
-        <div> <%= @location.average_rate %> ★★★★☆ 11 Posts</div>
+        <div> <%= @location.average_rate %> <%= '★' * (@location.average_rate.floor) + '☆' * (5-@location.average_rate.floor)%> <%= @location.posts.count %> Posts</div>
         <div>[Park] [Mountain]</div>
       </div>
 
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Oct 20, 2022</li>
-        <li class="list-group-item">✦ Clear</li>
-        <li class="list-group-item">H:20 L:12</li>
+        <li class="list-group-item"><%= params[:date] == nil ? Date.today :  params[:date] %></li>
+        <li class="list-group-item">Weather: <%= @weather == nil ? "No data"  : @weather.weather_type %></li>
+        <li class="list-group-item">Pollution Index: <%= @light_pollution == nil ? "No data"  : @light_pollution.pollution_index %></li>
       </ul>
 
       <div class="card-body">

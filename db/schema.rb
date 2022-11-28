@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_13_044519) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_023112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,11 +52,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_044519) do
 
   create_table "light_pollutions", force: :cascade do |t|
     t.integer "pollution_index"
-    t.datetime "time"
+    t.date "date"
     t.json "coordinates"
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_light_pollutions_on_date"
+    t.index ["location_id"], name: "index_light_pollutions_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_044519) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.index ["location_name"], name: "index_locations_on_location_name"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -119,11 +121,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_13_044519) do
 
   create_table "weathers", force: :cascade do |t|
     t.string "weather_type"
-    t.datetime "time"
+    t.date "date"
     t.json "coordinates"
     t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["date"], name: "index_weathers_on_date"
+    t.index ["location_id"], name: "index_weathers_on_location_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

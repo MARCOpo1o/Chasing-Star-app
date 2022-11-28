@@ -10,6 +10,10 @@ class LocationsController < ApplicationController
   # GET /locations/1 or /locations/1.json
   def show
     @location = Location.find(params[:id])
+    @location.average_rate = @location.posts.length > 0 ? @location.posts.average(:rate).round(1) : 0
+    @date = params[:date] == nil ? Date.today : params[:date]
+    @weather = Weather.find_by(location_id: params[:id], date: @date)
+    @light_pollution = LightPollution.find_by(location_id: params[:id], date: @date)
     @user = current_user
     @posts = @location.posts.paginate(page: params[:page])
     session[:return_to] = request.referrer
@@ -62,6 +66,11 @@ class LocationsController < ApplicationController
       format.html { redirect_to locations_url, notice: "Location was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def do_search
+    @locations = Location.where("location_name ILIKE ?", "%#{params[:location_name]}%")
+    render :index
   end
 
   private
