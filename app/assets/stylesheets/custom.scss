@@ -224,6 +224,7 @@ input {
 }
 
 .card {
+  width: 18rem;
   background: #222;
   border: 1px solid #777;
   color: rgba(250, 250, 250, 0.8);
@@ -510,6 +511,10 @@ aside {
 	outline: none;
 	line-height: 1rem;
 }
+
+#map-row {
+  margin-top: -62px;
+}
 /* Media Query */
 
 @media screen and (max-width: 1000px) {
@@ -542,5 +547,19 @@ aside {
     flex-direction: column;
     margin: 0;
     margin-left: 0px;
+  }
+
+  #map-row {
+    flex-direction: column;
+    #map {
+      height: 40%;
+      width: 100%;
+      left: 0px;
+    }
+
+    #map-left {
+      margin-top: 24em;
+      flex-direction: row;
+    }
   }
 }

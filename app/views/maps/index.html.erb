@@ -1,9 +1,11 @@
 <% provide(:title, 'Map') %>
-<div class='row'>
-  <div class='col-sm-5'>
+<div class='row' id='map-row'>
+  <div class='col-sm-5' id='map-left'>
     <div class="container mx-auto mt-4">
-      <div class="row">
-       <%= render @locations %>
+      <div class="row" id='posts-map'>
+        <%= will_paginate @locations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+          <%= render @locations %>
+        <%= will_paginate @locations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
       </div>
     </div>
   </div>
