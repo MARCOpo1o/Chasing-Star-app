@@ -11,23 +11,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :location_name, style: "display: block" %>
-    <%= form.text_field :location_name %>
-  </div>
+    <div>
+      <%= form.label :location_name, style: "display: block" %>
+      <%= form.text_field :location_name %>
+    </div>
 
-  <div>
-    <%= form.label :average_rate, style: "display: block" %>
-    <%= form.text_field :average_rate %>
-  </div>
+    <div>
+      <%= form.label :average_rate, style: "display: block" %>
+      <%= form.text_field :average_rate %>
+    </div>
 
-  <span class="image">
-    <%= form.file_field :image %>
-  </span>
+    <span class="image">
+      <%= form.file_field :image %>
+    </span>
 
-  <div>
-    <%= form.submit %>
-  </div>
-
+    <div>
+      <%= form.submit %>
+    </div>
 
 <% end %>
