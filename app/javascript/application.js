@@ -4,4 +4,3 @@ import "controllers"
 import "custom/menu"
 //= require jquery
 //= require bootstrap
-

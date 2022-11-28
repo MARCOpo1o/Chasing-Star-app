@@ -1,3 +1,8 @@
+       <script>
+          function select_date(param){
+          document.getElementById("date form").value= param;
+          }
+       </script>
 
 <div class="container">
   <div class="row">
@@ -7,10 +12,10 @@
             <%= month_calendar do |date| %>
                 <div>
                     <%= date.day %>
-                    <%= button_to "Select Date", :method=> "select_date", params: { selected_date: date }%>
+                    <button value=<%= date %> onclick="select_date(this.value)">Select Date</button>
                 </div>
             <% end %>
         </div>
     </div>
-    <button>Search</button>
+    <input type="date" id="date form">
 </div>
