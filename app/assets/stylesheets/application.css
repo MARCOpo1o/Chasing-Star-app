@@ -15,3 +15,12 @@
  *= require simple_calendar
  */
  
+ .calendar-button {
+    width: 100%;
+    transition-duration: 0.2s;
+    background-color: white;
+  }
+
+  .calendar-button:hover {
+    background-color: #8e8e8e;
+  }
