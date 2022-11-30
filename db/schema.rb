@@ -92,13 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_023112) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "selected_dates", force: :cascade do |t|
-    t.string "title"
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_locations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "location_id"

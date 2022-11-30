@@ -1,19 +1,15 @@
-<li id="post-<%= post.id %>">
-  <%= link_to gravatar_for(post.user, size: 50), post.user %>
-  <span class="user"><%= link_to post.user.user_name, post.user %></span>
-  <div><%= link_to "Post Link", user_post_path(post.user,post) %></div>
-  <div>rate: <%= post.rate %></div>
-  <span class="message">
-    <%= post.message %>
-    <% if post.image.attached? %>
-      <%= image_tag post.image.variant(:display) %>
-    <% end %>
-  </span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-    <% if current_user?(post.user) %>
-      <%= link_to "delete", user_post_path(@user, post), data: { "turbo-method": :delete,
-                                               turbo_confirm: "You sure?" } %>
-    <% end %>
-  </span>
-</li>
+<div class="gallery-item" tabindex="0">
+
+
+        <%= link_to image_tag("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60?w=500&h=500&fit=crop", :class => "gallery-image"), user_post_path(post.user,post) %>
+
+				<div class="gallery-item-info">
+
+					<ul>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-star" aria-hidden="true"></i> <%= post.rate %>/5</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+					</ul>
+
+				</div>
+
+</div>

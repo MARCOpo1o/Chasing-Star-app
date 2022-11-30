@@ -231,6 +231,11 @@ input {
   margin-bottom: 2rem;
 }
 
+.card-body-2 {
+  justify-content: center;
+  display: flex;
+}
+
 .list-group-item {
   background: #222;
   color: rgba(250, 250, 250, 0.8);
@@ -366,6 +371,13 @@ aside {
 	.desc {
 		font-size: 0.8rem;
 	}
+
+  img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 500px;
+    }
 }
 
 .post {
@@ -534,6 +546,13 @@ aside {
     .desc {
         font-size: 0.8rem;
     }
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 500px;
+    }
   }
 
   .post {
@@ -563,3 +582,381 @@ aside {
     }
   }
 }
+
+
+
+    /*
+
+  All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 310). 
+          
+  The 'supports' rule will only run if your browser supports CSS grid.
+
+  Flexbox and floats are used as a fallback so that browsers which don't support grid will still recieve a similar layout.
+
+  */
+
+  /* Base Styles */
+
+  *,
+  *::before,
+  *::after {
+      box-sizing: border-box;
+  }
+
+  body {
+      font-family: "Open Sans", Arial, sans-serif;
+      min-height: 100vh;
+      background-color: #fafafa;
+      color: #262626;
+      padding-bottom: 30px;
+  }
+
+  img {
+      display: block;
+  }
+
+  .container {
+      max-width: 935px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+  .btn {
+      display: inline-block;
+      font: inherit;
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 0;
+      cursor: pointer;
+  }
+
+  .btn:focus {
+      outline: 5px auto #4d90fe;
+  }
+
+  .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+  }
+
+  /* location-profile Section */
+
+  .location-profile {
+      padding: 50px 0;
+  }
+
+  .location-profile::after {
+      content: "";
+      display: block;
+      clear: both;
+  }
+
+  .location-profile-image {
+      float: left;
+      width: calc(33.333% - 10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 30px;
+  }
+
+  .location-profile-image img {
+      border-radius: 50%;
+  }
+
+  .location-profile-title,
+  .location-profile-stats,
+  .location-profile-bio {
+      float: left;
+      width: calc(66.666% - 20px);
+  }
+
+  .location-profile-title {
+      margin-top: 11px;
+  }
+
+  .location-profile-spot-name {
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 300;
+  }
+
+  .location-profile-save-btn {
+      font-size: 14px;
+      line-height: 1.8;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      padding: 0 24px;
+      margin-left: 2px;
+  }
+
+  .location-profile-settings-btn {
+      font-size: 20px;
+      margin-left: 10px;
+  }
+
+  .location-profile-stats {
+      margin-top: 23px;
+  }
+
+  .location-profile-stats li {
+      display: inline-block;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-right: 40px;
+      cursor: pointer;
+  }
+
+  .location-profile-stats li:last-of-type {
+      margin-right: 0;
+  }
+
+  .location-profile-bio {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-top: 23px;
+  }
+
+  .location-profile-nick-name,
+  .location-profile-stat-count,
+  .location-profile-save-btn {
+      font-weight: 600;
+  }
+
+  /* Gallery Section */
+
+  .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -10px -10px;
+      padding-bottom: 30px;
+  }
+
+  .gallery-item {
+      position: relative;
+      flex: 1 0 220px;
+      margin: 10px;
+      color: #fff;
+      cursor: pointer;
+  }
+
+  .gallery-item:hover .gallery-item-info,
+  .gallery-item:focus .gallery-item-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .gallery-item-info {
+      display: none;
+  }
+
+  .gallery-item-info li {
+      display: inline-block;
+      font-size: 17px;
+      font-weight: 600;
+  }
+
+  .gallery-item-likes {
+      margin-right: 22px;
+  }
+
+  .gallery-item-type {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 25px;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .fa-clone,
+  .fa-comment {
+      transform: rotateY(180deg);
+  }
+
+  .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  /* Loader */
+
+  .loader {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #999;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      margin: 0 auto;
+      animation: loader 500ms linear infinite;
+  }
+
+  /* Media Query */
+
+  @media screen and (max-width: 400px) {
+      .location-profile {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 400px 0;
+      }
+
+      .location-profile::after {
+          display: none;
+      }
+
+      .location-profile-image,
+      .location-profile-title,
+      .location-profile-bio,
+      .location-profile-stats {
+          float: none;
+          width: auto;
+      }
+
+      .location-profile-image img {
+          width: 77px;
+      }
+
+      .location-profile-title {
+          flex-basis: calc(100% - 1070px);
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 10px;
+      }
+
+      .location-profile-spot-name {
+          font-size: 22px;
+      }
+
+      .location-profile-save-btn {
+          order: 1;
+          padding: 0;
+          text-align: center;
+          margin-top: 10px;
+      }
+
+      .location-profile-save-btn {
+          margin-left: 0;
+      }
+
+      .location-profile-bio {
+          font-size: 14px;
+          margin-top: 15px;
+      }
+
+      .location-profile-save-btn,
+      .location-profile-bio,
+      .location-profile-stats {
+          flex-basis: 100%;
+      }
+
+      .location-profile-stats {
+          order: 1;
+          margin-top: 15px;
+      }
+
+      .location-profile-stats ul {
+          display: flex;
+          text-align: center;
+          padding: 12px 0;
+          border-top: 1px solid #dadada;
+          border-bottom: 1px solid #dadada;
+      }
+
+      .location-profile-stats li {
+          font-size: 14px;
+          flex: 1;
+          margin: 0;
+      }
+
+      .location-profile-stat-count {
+          display: block;
+      }
+  }
+
+  /* Spinner Animation */
+
+  @keyframes loader {
+      to {
+          transform: rotate(360deg);
+      }
+  }
+
+  /*
+
+  The following code will only run if your browser supports CSS grid.
+
+  Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
+
+  */
+
+  @supports (display: grid) {
+      .location-profile {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          grid-template-rows: repeat(3, auto);
+          grid-column-gap: 30px;
+          align-items: center;
+      }
+
+      .location-profile-image {
+          grid-row: 1 / -1;
+      }
+
+      .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          grid-gap: 20px;
+      }
+
+      .location-profile-image,
+      .location-profile-title,
+      .location-profile-stats,
+      .location-profile-bio,
+      .gallery-item,
+      .gallery {
+          width: auto;
+          margin: 0;
+      }
+
+      @media (max-width: 400px) {
+          .location-profile {
+              grid-template-columns: auto 1fr;
+              grid-row-gap: 15px;
+          }
+
+          .location-profile-image {
+              grid-row: 1 / 2;
+          }
+
+          .location-profile-title {
+              display: grid;
+              grid-template-columns: auto 1fr;
+              grid-gap: 10px;
+          }
+
+          .location-profile-save-btn,
+          .location-profile-stats,
+          .location-profile-bio {
+              grid-column: 1 / -1;
+          }
+
+          .location-profile-title,
+          .location-profile-save-btn,
+          .location-profile-settings-btn,
+          .location-profile-bio,
+          .location-profile-stats {
+              margin: 0;
+          }
+      }
+  }
