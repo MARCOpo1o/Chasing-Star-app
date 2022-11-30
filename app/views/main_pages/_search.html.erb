@@ -1,10 +1,14 @@
-<div class="row d-flex justify-content-center">
-  <div class="col-md-6 col-md-offset-3">
+<div>
+  <div>
       <%= form_tag(do_search_locations_path, method: "get") do%>
-        <label>Location Name</label>
-        <%= text_field_tag(:location_name, nil, placeholder: 'Acadia National Park') %>
-        <label>Date</label>
-        <%= date_field_tag(:date, Date.today, id: "date_form") %>
+        <div class="search-form">
+          <label>Location Name:</label>
+          <%= text_field_tag(:location_name, nil, placeholder: 'Acadia National Park') %>
+        </div>
+        <div class="search-form">
+          <label>Date of Stargazing:</label>
+          <%= date_field_tag(:date, Date.today, id: "date_form") %>
+        </div>
       <%= submit_tag("Search") %>
     <% end %>
   </div>

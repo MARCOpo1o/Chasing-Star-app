@@ -4,17 +4,9 @@
     }
 </script>
 
-<div class="container">
-  <div class="row">
-        <div class="col-6 p-100 simple_calendar">
+<div class="homepage-card">
             <%= month_calendar do |date| %>
-                <span>
                     <button class="calendar-button" value=<%= date %> onclick="select_date(this.value)"><%= date.day %></button>
-                </span>
             <% end %>
-        </div>
-        <div class="col-6 p-100">
             <%= render 'search'%>
-        </div>
-    </div>
 </div>

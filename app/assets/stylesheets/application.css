@@ -14,7 +14,27 @@
  *= require_self
  *= require simple_calendar
  */
- 
+
+  .search-form {
+    font-size: 1.2em;
+    margin: 2%;
+  }
+
+ .homepage-card {
+    align-self: center;  
+    background-color: white;
+    padding: 2%;
+    margin-left: 5%;
+    border-radius: 10px;
+    margin-right: auto;
+    width: 50%;
+ }
+
+ body {
+    background-image: url(background-image-stars.jpg);
+    background-size: contain;
+ }
+
  .calendar-button {
     width: 100%;
     transition-duration: 0.2s;
@@ -23,4 +43,13 @@
 
   .calendar-button:hover {
     background-color: #8e8e8e;
+  }
+
+  .simple-calendar{
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(57, 57, 57);
+    border-radius: 8px;
+    padding: 1%;
+    background-color: white;
   }
