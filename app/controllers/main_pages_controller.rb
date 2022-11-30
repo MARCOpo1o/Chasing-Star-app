@@ -4,4 +4,5 @@ class MainPagesController < ApplicationController
 
   def explore
   end
+
 end

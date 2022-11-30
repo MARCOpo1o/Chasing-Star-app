@@ -8,18 +8,19 @@
       <%= image_tag @location.image if @location.image.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= @location.location_name %></h5>
-        <div> <%= @location.average_rate %> <%= '★' * (@location.average_rate.floor) + '☆' * (5-@location.average_rate.floor)%> <%= @location.posts.count %> Posts</div>
+        <div> <%= @average_rate %> <%= '★' * (@average_rate.floor) + '☆' * (5-@average_rate.floor)%> <%= @location.posts.count %> Posts</div>
         <div>[Park] [Mountain]</div>
       </div>
 
       <ul class="list-group list-group-flush">
+        <li class="list-group-item">API Timestamp: <%=@weatherInfo%></li>
         <li class="list-group-item"><%= params[:date] == nil ? Date.today :  params[:date] %></li>
-        <li class="list-group-item">Weather: <%= @weather == nil ? "No data"  : @weather.weather_type %></li>
-        <li class="list-group-item">Pollution Index: <%= @light_pollution == nil ? "No data"  : @light_pollution.pollution_index %></li>
+        <li class="list-group-item">Cloud: <%= @cloudCover == nil ? "No data"  : @cloudCover %></li>
+        <li class="list-group-item">Bortle Scale: <%= @bortleScale == nil ? "No data"  : @bortleScale %></li>
       </ul>
 
       <div class="card-body">
-          <small>77/100</small>
+          <small><%= @score %>/100</small>
       </div>
       <hr/>
       <% if !current_user.nil? %>
