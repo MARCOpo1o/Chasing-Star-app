@@ -14,13 +14,57 @@
  *= require_self
  *= require simple_calendar
  */
- 
+
+ .calendar-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+  .search-form {
+    font-size: 1.2em;
+    margin: 2%;
+  }
+
+ .homepage-card {
+    align-self: center;  
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 40px;
+    margin-right: auto;
+    width: 600px;
+    min-width: 400px;
+    min-height: fit-content;
+    font-family: "Century Gothic";
+ }
+
+ body {
+    background-image: url(background-image-stars.jpg);
+    background-size: cover;
+ }
+
  .calendar-button {
     width: 100%;
+    min-height: 65px;
+    border-width: 0px;
     transition-duration: 0.2s;
-    background-color: white;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
   }
 
   .calendar-button:hover {
     background-color: #8e8e8e;
+  }
+
+  .calendar-button:focus {
+    background-color: #000000;
+    color:white;
+  }
+
+  .simple-calendar{
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(149, 149, 149);
+    padding: 1%;
   }
