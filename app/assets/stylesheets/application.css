@@ -15,6 +15,11 @@
  *= require simple_calendar
  */
 
+ .calendar-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
   .search-form {
     font-size: 1.2em;
     margin: 2%;
@@ -30,7 +35,7 @@
     width: 600px;
     min-width: 400px;
     min-height: fit-content;
-    font-family: monospace;
+    font-family: "Century Gothic";
  }
 
  body {
