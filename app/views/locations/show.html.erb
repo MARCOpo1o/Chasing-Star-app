@@ -1,10 +1,10 @@
-
 <p style="color: green"><%= notice %></p>
 
 <div class="row">
   <div id="<%= dom_id @location %>" class="col-md-4">
     <div class="card">
-      <%= image_tag("star.jpg") %>
+
+      <%= @location.image_json == nil ? image_tag("star.jpg") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"auto") %>
       <%= image_tag @location.image if @location.image.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= @location.location_name %></h5>
@@ -17,11 +17,29 @@
         <li class="list-group-item"><%= params[:date] == nil ? Date.today :  params[:date] %></li>
         <li class="list-group-item">Cloud: <%= @cloudCover == nil ? "No data"  : @cloudCover %></li>
         <li class="list-group-item">Bortle Scale: <%= @bortleScale == nil ? "No data"  : @bortleScale %></li>
+        <li class="list-group-item">Star Visibility: <%= @score %>/100</li>
       </ul>
 
       <div class="card-body">
-          <small><%= @score %>/100</small>
+          <% if @score >= 90 %>
+            <div>
+              <span class="p-2 bg-warning text-white">Excellent ★ ★ ★</span>
+            </div>
+          <% elsif @score >= 70 %>
+            <div>
+              <span class="p-2 bg-success text-white">Good ★ ★ ☆</span>
+            </div>
+          <% elsif @score >= 50 %>
+            <div>
+              <span class="p-2 bg-info text-white">Fair ★ ☆ ☆</span>
+            </div>
+          <% else %>
+            <div>
+              <span class="p-2 bg-secondary text-white">Bad ☆ ☆ ☆</span>
+            </div>
+          <% end %>
       </div>
+     
       <hr/>
       <% if !current_user.nil? %>
         <div class="card-body">

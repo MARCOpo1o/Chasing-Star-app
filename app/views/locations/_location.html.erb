@@ -1,6 +1,6 @@
 <div id="<%= dom_id location %>" class="col-sm-6">
-  <div class="card">
-    <%= image_tag("star.jpg") %>
+  <div class="card" style="width: 18rem; height: 30rem">
+    <%= location.image_json == nil ? image_tag("star.jpg") : image_tag(location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"auto") %>
     <%= image_tag location.image if location.image.attached? %>
     <div class="card-body">
       <h5 class="card-title"><%= location.location_name %></h5>
@@ -13,8 +13,6 @@
 
     <div class="card-body">
         <%= link_to "Show", location_path(id:location.id, date:params[:date]) %>
-        <%= link_to "Save", '#' %>
-        <%= link_to "Share", '#' %>
     </div>
   </div>
 </div>

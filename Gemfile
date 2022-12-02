@@ -53,6 +53,8 @@ gem 'will_paginate-bootstrap-style'
 gem 'rails-controller-testing'
 gem "simple_calendar", "~> 2.4"
 
+gem 'unsplash'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

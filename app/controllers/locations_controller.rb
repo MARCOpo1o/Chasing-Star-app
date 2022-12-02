@@ -20,7 +20,8 @@ class LocationsController < ApplicationController
     @posts = @location.posts.paginate(page: params[:page])
     
     @score = starVisibility(@cloudCover, @bortleScale)
-    session[:return_to] = request.referrer
+    session.delete(:return_to)
+    session[:return_to] = request.original_url
   end
 
   # GET /locations/new

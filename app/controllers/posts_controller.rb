@@ -11,18 +11,18 @@ class PostsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
-    @comments = @post.comments.paginate(page: params[:page])
+    @comments = @post.comments.paginate(page: params[:page]) 
+    session.delete(:return_to)
+    session[:return_to] = request.original_url
   end
 
   def create
     @user = User.find(params[:user_id])
-    @location = Location.find(session[:current_location_id])
     @post = @user.posts.new(post_params)
     @post.image.attach(params[:post][:image])
     
 
     if @post.save
-      session.delete(:current_location_id)
       flash[:success] = "Post created!"
       redirect_to @post.location
     else

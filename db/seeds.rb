@@ -16,30 +16,35 @@
 
 require 'faker'
 require 'json'
+require_relative 'seed_more.rb'
+
+def configure
+    Unsplash.configure do |config|
+        config.application_access_key = ENV['UNSPLASH_API_KEY']
+        config.application_secret = ENV['UNSPLASH_SECRET_API_KEY']
+        # config.application_redirect_uri = ENV['UNSPLASH_REDICT_URI']
+        config.utm_source = "Chasing stars"
+    end
+end
+
+def getStarPic
+    configure
+    image = Unsplash::Photo.random(count: 1, query: 'stars in the sky')
+    return image
+end
+
 
 #locations
 national_parks = File.read(File.join(Rails.root, 'app', 'assets', 'dataset', 'national_parks.json'))
 national_parks_hash = JSON.parse(national_parks)
+i = 1;
 national_parks_hash.each do |park|
-    Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'])
-end
-
-#weathers
-for i in 1..10 do
-    Weather.create(weather_type: "Clear", location_id: i, date: Date.today)
-end
-
-for i in 1..10 do
-    Weather.create(weather_type: "Rain", location_id: i, date: Date.today + 1)
-end
-
-#LightPollution
-for i in 1..10 do
-    LightPollution.create(pollution_index: Faker::Number.number(digits: 2), location_id: i, date: Date.today)
-end
-
-for i in 1..10 do
-    LightPollution.create(pollution_index: Faker::Number.number(digits: 2), location_id: i, date: Date.today + 1)
+    if i < 50
+        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], image_json: getStarPic)
+        i = i+1
+    else 
+        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude']) 
+    end
 end
 
 #test user
@@ -53,7 +58,7 @@ User.create!(user_name:  "Example User",
     admin: true)
 
 # Generate a bunch of additional users.
-50.times do |n|
+100.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@railstutorial.org"
 password = "password"
@@ -63,7 +68,7 @@ User.create!(user_name:  name,
       password_confirmation: password)
 end
 # Generate posts for a subset of users.
-users = User.order(:created_at).take(30)
+users = User.order(:created_at).take(10)
 10.times do
   message = Faker::Lorem.sentence(word_count: 10)
   users.each { |user| user.posts.create!(message: message, rate: Faker::Number.between(from: 1, to: 5), location_id: Faker::Number.between(from: 1, to: 10)) }
@@ -71,7 +76,7 @@ end
 
 10.times do
   comment = Faker::Lorem.sentence(word_count: 10) 
-  users.each { |user| user.comments.create!(message: comment, post_id: Faker::Number.between(from: 1, to: 300)) }   
+  users.each { |user| user.comments.create!(message: comment, post_id: Faker::Number.between(from: 1, to: 100)) }   
 end
 
 
