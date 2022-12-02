@@ -1,0 +1,44 @@
+  <div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <%= image_tag("star.jpg") %>
+            <%= image_tag @post.image if @post.image.attached? %>
+            <div class="card-body">
+                <h5 class="card-title">Message: <%= @post.message %></h5>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">User: <%= @post.user.user_name %></li>
+            </ul>
+
+            <div class="card-body"> 
+                <small>Rate: <%= @post.rate %> / 5</small>
+            </div>
+
+            <hr/>
+
+            <% if !current_user.nil? %>
+                <div class="card-body">
+                    <%= link_to "Leave a comment", new_user_post_comment_path(@user, post_id: @post.id) %>
+                </div>
+            <% else %>
+                <div class="card-body">
+                    <%= link_to "Sign in to make a comment",  login_path %> 
+                </div>
+            <% end %>  
+        </div>
+
+        <div><%= link_to "Back to location", @post.location %></div>
+    </div>
+
+    <div class="col-md-4">
+    
+      <%= will_paginate @comments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+        <h3>Comments (<%= @post.comments.count %>)</h3> 
+        <ol class="comments">
+            <%= render @comments %> 
+        </ol>     
+      <%= will_paginate @comments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    
+    </div>
+</div>

@@ -1,79 +1,114 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="row">
-  <div id="<%= dom_id @location %>" class="col-md-4">
-    <div class="card">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-      <%= @location.image_json == nil ? image_tag("star.jpg") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"auto") %>
-      <%= image_tag @location.image if @location.image.attached? %>
-      <div class="card-body">
-        <h5 class="card-title"><%= @location.location_name %></h5>
-        <div> <%= @average_rate %> <%= '★' * (@average_rate.floor) + '☆' * (5-@average_rate.floor)%> <%= @location.posts.count %> Posts</div>
-        <div>[Park] [Mountain]</div>
-      </div>
+<div class="container">
 
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">API Timestamp: <%=@weatherInfo%></li>
-        <li class="list-group-item"><%= params[:date] == nil ? Date.today :  params[:date] %></li>
-        <li class="list-group-item">Cloud: <%= @cloudCover == nil ? "No data"  : @cloudCover %></li>
-        <li class="list-group-item">Bortle Scale: <%= @bortleScale == nil ? "No data"  : @bortleScale %></li>
-        <li class="list-group-item">Star Visibility: <%= @score %>/100</li>
-      </ul>
+		<div class="location-profile">
 
-      <div class="card-body">
-          <% if @score >= 90 %>
-            <div>
-              <span class="p-2 bg-warning text-white">Excellent ★ ★ ★</span>
-            </div>
-          <% elsif @score >= 70 %>
-            <div>
-              <span class="p-2 bg-success text-white">Good ★ ★ ☆</span>
-            </div>
-          <% elsif @score >= 50 %>
-            <div>
-              <span class="p-2 bg-info text-white">Fair ★ ☆ ☆</span>
-            </div>
-          <% else %>
-            <div>
-              <span class="p-2 bg-secondary text-white">Bad ☆ ☆ ☆</span>
-            </div>
-          <% end %>
-      </div>
-     
-      <hr/>
+			<div class="location-profile-image">
+
+        <%= @location.image_json == nil ? image_tag("star.jpg") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"auto") %>
+        <%= image_tag @location.image if @location.image.attached? %>
+
+			</div>
+
+			<div class="location-profile-title">
+
+				<h1 class="location-profile-spot-name"><%= @location.location_name %></h1>
+
+				<%# <button class="btn location-profile-save-btn">Save</button> %>
+
+				<%# <button class="btn location-profile-settings-btn" aria-label="location-profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button> %>
+
+			</div>
+
+			<div class="location-profile-stats">
+
+				<ul>
+					<li>User rating <span class="location-profile-stat-count"><%= @location.average_rate %> <%= '★' * (@location.average_rate.floor) + '☆' * (5-@location.average_rate.floor)%></span></li>
+					<li>Posts <span class="location-profile-stat-count"><%= @location.posts.count %></span></li>
+          <li>Date <span class="location-profile-stat-count"><%= params[:date] == nil ? Date.today :  params[:date] %></span></li>
+          <li>Weather <span class="location-profile-stat-count"><%= @weather == nil ? "No data"  : @weather.weather_type %></span></li>
+          <li>Bortle(pollution level) <span class="location-profile-stat-count"><%= @light_pollution == nil ? "No data"  : @light_pollution.pollution_index %></span></li>
+          <li>Star Visibility  <span class="location-profile-stat-count"><%= @score %>/100</span></li>
+          <div >
+              <% if @score >= 90 %>
+                <div>
+                  <span class="p-2 bg-warning text-white">Excellent ★ ★ ★</span>
+                </div>
+              <% elsif @score >= 70 %>
+                <div>
+                  <span class="p-2 bg-success text-white">Good ★ ★ ☆</span>
+                </div>
+              <% elsif @score >= 50 %>
+                <div>
+                  <span class="p-2 bg-info text-white">Fair ★ ☆ ☆</span>
+                </div>
+              <% else %>
+                <div>
+                  <span class="p-2 bg-secondary text-white">Bad ☆ ☆ ☆</span>
+                </div>
+              <% end %>
+          </div>
+				</ul>
+
+			</div>
+  
+			<div class="location-profile-bio">
+
+				<p><span class="location-profile-nick-name"><%= @location.location_name %></span> [Park] [Mountain] Lorem ipsum dolor sit, amet consectetur adipisicing elit 🌌🔭🌃</p> 
+			</div>
+>>>>>>> front-end-and-back-end-connecting
       <% if !current_user.nil? %>
-        <div class="card-body">
-            <%= link_to "Make a post",  new_user_post_path(@user, location_id: @location.id) %>
+        <div class="card-body-2">
+            <%= link_to "New post",  new_user_post_path(@user, location_id: @location.id), {:class => "btn location-profile-save-btn"}  %>
         </div>
         <% else %>
-        <div class="card-body">
-            <%= link_to "Sign in to make a post",  login_path %> 
+        <div class="card-body-2">
+            <%= link_to "Sign in to make a post",  login_path, {:class => "btn location-profile-save-btn"} %> 
         </div>
-      <% end %> 
-    </div>
-
-    <div>
-      <% if current_user && current_user.admin? %>
-        <%= link_to "Edit", edit_location_path(@location) %> |
-        <%= link_to "Delete", @location, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %> |
       <% end %>
-      <%= link_to "Back to map", map_path %>
-    </div>
-  </div>
+		</div>
+    
+		<!-- End of location-profile section -->
 
-  
-  <div class="col-md-4">
+	</div>
+	<!-- End of container -->
+
+
+ 
+<!--
+<div class="col-md">
     
       <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
         <h3>Posts (<%= @location.posts.count %>)</h3> 
         <ol class="posts">
           <%= render @posts %> 
-        </ol>     
+        </ol>
       <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
     
   </div>
+-->
 
-</div>
+<main>
+  <div class="container">
+    <div class="gallery">
+      <%= render @posts %> 
+    </div>
+  </div>
+</main>
 
 
- 
+ <script>
+  const posts = document.querySelectorAll('.gallery-item');
+
+  posts.forEach(post => {
+    post.addEventListener('click', () => {
+      //Get original image URL
+      const imgUrl = post.firstElementChild.href;
+      //Open image in new tab
+      window.open(imgUrl, '_blank');
+    });
+  });
+</script>
