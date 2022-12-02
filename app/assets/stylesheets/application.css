@@ -35,7 +35,7 @@
 
  body {
     background-image: url(background-image-stars.jpg);
-    background-size: contain;
+    background-size: cover;
  }
 
  .calendar-button {
