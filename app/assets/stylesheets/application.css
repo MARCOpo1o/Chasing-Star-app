@@ -38,7 +38,7 @@
     font-family: "Century Gothic";
  }
 
- body {
+ body.welcome {
     background-image: url(background-image-stars.jpg);
     background-size: cover;
  }

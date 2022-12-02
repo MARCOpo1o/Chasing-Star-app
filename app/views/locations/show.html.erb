@@ -26,7 +26,7 @@
 			<div class="location-profile-stats">
 
 				<ul>
-					<li>User rating <span class="location-profile-stat-count"><%= @location.average_rate %> <%= '★' * (@location.average_rate.floor) + '☆' * (5-@location.average_rate.floor)%></span></li>
+					<li>User rating <span class="location-profile-stat-count"><%= @average_rate %> <%= '★' * (@average_rate.floor) + '☆' * (5-@average_rate.floor)%></span></li>
 					<li>Posts <span class="location-profile-stat-count"><%= @location.posts.count %></span></li>
           <li>Date <span class="location-profile-stat-count"><%= params[:date] == nil ? Date.today :  params[:date] %></span></li>
           <li>Weather <span class="location-profile-stat-count"><%= @weather == nil ? "No data"  : @weather.weather_type %></span></li>
