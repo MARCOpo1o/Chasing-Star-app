@@ -3,35 +3,6 @@
 
   <div class="container-fluid">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-expanded="false">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="ml-auto">
-      <a class="navbar-brand" href="/">Chasing Stars</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/maps">Star Map</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/explore">Explore</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="/login" id="login" class="nav-link">
-              Login <b class="caret"></b>
-            </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  <div class="container-fluid">
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"  aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -59,9 +30,6 @@
                 Account <b class="caret"></b>
               </a>
               <ul id="dropdown-menu" class="dropdown-menu bg-dark">
-                <%# <a href="#" id="account" class="nav-link">
-                  Profile <b class="caret"></b>
-                </a> %>
                 <li>
                   <li><%= link_to "Profile", current_user %></li>
                 </li>

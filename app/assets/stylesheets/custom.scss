@@ -45,7 +45,7 @@ $gray-medium-light: #eaeaea;
   width: 100%;
   padding-right: var(--bs-gutter-x,.75rem);
   padding-left: var(--bs-gutter-x,.75rem);
-  margin-top: 55px;
+  margin-top: 100px;
   margin-left: auto;
 }
 
@@ -220,7 +220,7 @@ input {
 }
 
 :root {
-  --gradient: linear-gradient(to left top, #dd2476 10%, #ff512f 90%) !important;
+  --gradient: linear-gradient(to left top, #800080 10%, #000080 90%) !important;
 }
 
 .card {

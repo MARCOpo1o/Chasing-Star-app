@@ -21,6 +21,8 @@ gem 'bootstrap', '~> 5.2.2'
 
 #added for algo
 gem 'excon'
+gem 'httparty'
+gem 'dotenv-rails'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -51,6 +53,7 @@ gem 'will_paginate-bootstrap-style'
 gem 'rails-controller-testing'
 gem "simple_calendar", "~> 2.4"
 
+gem 'unsplash'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
