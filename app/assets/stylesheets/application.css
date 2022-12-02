@@ -23,11 +23,14 @@
  .homepage-card {
     align-self: center;  
     background-color: white;
-    padding: 2%;
-    margin-left: 5%;
     border-radius: 10px;
+    padding: 20px;
+    margin: 40px;
     margin-right: auto;
-    width: 50%;
+    width: 600px;
+    min-width: 400px;
+    min-height: fit-content;
+    font-family: monospace;
  }
 
  body {
@@ -37,19 +40,26 @@
 
  .calendar-button {
     width: 100%;
+    min-height: 65px;
+    border-width: 0px;
     transition-duration: 0.2s;
-    background-color: white;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
   }
 
   .calendar-button:hover {
     background-color: #8e8e8e;
   }
 
+  .calendar-button:focus {
+    background-color: #000000;
+    color:white;
+  }
+
   .simple-calendar{
     border-style: solid;
     border-width: 3px;
-    border-color: rgb(57, 57, 57);
-    border-radius: 8px;
+    border-color: rgb(149, 149, 149);
     padding: 1%;
-    background-color: white;
   }

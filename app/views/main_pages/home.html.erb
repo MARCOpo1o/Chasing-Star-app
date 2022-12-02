@@ -2,11 +2,18 @@
     function select_date(date){
     document.getElementById("date_form").value= date;
     }
+
+    const btn = document.getElementById("test");
+    btn.addEventListener('click', function onClick() {
+    btn.style.borderWidth = '10px';
+    });
 </script>
 
 <div class="homepage-card">
             <%= month_calendar do |date| %>
-                    <button class="calendar-button" value=<%= date %> onclick="select_date(this.value)"><%= date.day %></button>
+                <div id="date-outline">
+                    <button class="calendar-button" id="test" value=<%= date %> onclick="select_date(this.value)"><%= date.day %></button>
+                </div>
             <% end %>
             <%= render 'search'%>
 </div>
