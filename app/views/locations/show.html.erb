@@ -88,7 +88,9 @@
       //Get original image URL
       const imgUrl = post.firstElementChild.href;
       //Open image in new tab
-      window.open(imgUrl, '_blank');
+      // window.open(imgUrl, '_blank');
+      window.location.replace(imgUrl);
+      
     });
   });
 </script>

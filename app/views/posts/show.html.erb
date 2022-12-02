@@ -18,16 +18,16 @@
                 <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="avatar" alt="Post avatar" />
             </figure>
             <div class="content">
-                <h3> Firstname Lastname</h3>
-                <p class="title"> Description </p>
-                <span class="updated"> 12h. Commented</span>
+                <h3> <%= @post.user.user_name %></h3>
+                <p class="title"> Freelancer </p>
+                <span class="updated"> <%= @post.created_at %> posted</span>
             </div>
         </header>
         
         <!-- Post Content Section -->
         <section class="post-content">
             <p class="content"> 
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                <%= @post.message %>
             </p>
             <div class="stats">
                 <span clas="likes"> 12 Likes </span>
