@@ -4,6 +4,7 @@
     }
 </script>
 
+<body class="welcome if action_name == 'welcome'">
 <div class="homepage-card">
             <%= month_calendar do |date| %>
                 <div id="date-outline">
@@ -12,3 +13,4 @@
             <% end %>
             <%= render 'search'%>
 </div>
+</body>

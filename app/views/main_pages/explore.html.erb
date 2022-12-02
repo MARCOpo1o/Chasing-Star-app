@@ -1,1 +1,20 @@
+<main>
+  <div class="container">
+    <div class="gallery">
+      <%= render @rand_posts %> 
+    </div>
+  </div>
+</main>
 
+ <script>
+  const posts = document.querySelectorAll('.gallery-item');
+
+  posts.forEach(post => {
+    post.addEventListener('click', () => {
+      //Get original image URL
+      const imgUrl = post.firstElementChild.href;
+      //Open image in new tab
+      window.open(imgUrl, '_blank');
+    });
+  });
+</script>
