@@ -15,19 +15,19 @@
         <!-- Post Header -->
         <header class="post-header">
             <figure class="avatar-wrapper">
-                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="avatar" alt="Post avatar" />
+                <%= link_to gravatar2_for(@post.user, size: 50), @post.user %>
             </figure>
             <div class="content">
-                <h3> Firstname Lastname</h3>
-                <p class="title"> Description </p>
-                <span class="updated"> 12h. Commented</span>
+                <h3> <%= @post.user.user_name %></h3>
+                <p class="title"> Freelancer </p>
+                <span class="updated"> <%= @post.created_at %> posted</span>
             </div>
         </header>
         
         <!-- Post Content Section -->
         <section class="post-content">
             <p class="content"> 
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                <%= @post.message %>
             </p>
             <div class="stats">
                 <span clas="likes"> 12 Likes </span>
@@ -42,35 +42,37 @@
 
         <!-- Post Comments Section -->
         <section class="post-comment-feed">
-            <div class="comment">
-                <figure class="avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="avatar" alt="Post avatar" />
-                </figure>
-                <div class="content">
-                    <span class="user"> Firstname Lastname </span>
-                    <span class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-                    <h5 class="updated"> 10hr. </h5>
-                </div>
-            </div>
+            
                     
-            <div class="comment">
-                <figure class="avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="avatar" alt="Post avatar" />
-                </figure>
-                <div class="content">
-                    <span class="user"> Firstname Lastname </span>
-                    <span class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span>
-                    <h5 class="updated"> 8hr. </h5>
+            <% @comments.each do |comment|%>
+                
+                <div class="comment">
+                    <figure class="avatar-wrapper">
+                        <%= link_to gravatar2_for(comment.user, size: 50), comment.user %>
+                    </figure>
+                    
+                    <div class="content">
+                        <span class="user"> <%=comment.user.user_name%> </span>
+                        <span class="text"> <%=comment.message%> </span>
+                        <h5 class="updated"> <%= comment.created_at %> commented </h5>
+                    </div>
                 </div>
-            </div>                    
+            <% end %>      
+
             <div class="add-comment"> 
                 <figure class="avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGF2YXRhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="avatar" alt="Post avatar" />
+                    <%= link_to gravatar2_for(@post.user, size: 50), @post.user %>
                 </figure>
-                <div class="textfield">			 		
-                    <input type="text" name="comment" placeholder="Add a comment"/>
-                    <button class="btn btn-camera"> <i class="fa fa-camera-retro" aria-hidden="true"></i>  </button>
+       
+                <%= form_with(model: @comment, url: [current_user,@post, @comment]) do |f| %> 
+                <div class="textfield">		
+                                    <%= f.text_field :message, placeholder: "Add a comment" %>
+                                     <button class="btn btn-camera"> <i class="fa fa-camera-retro" aria-hidden="true"></i>  </button>
+                                    <%= f.hidden_field :post_id, placeholder: '@post_id.id', value: @post&.id %>
+                                    
+                                    
                 </div>
+                <% end %>
             </div>
         </section>
 
