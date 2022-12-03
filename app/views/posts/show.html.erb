@@ -64,13 +64,11 @@
                     <%= link_to gravatar2_for(@post.user, size: 50), @post.user %>
                 </figure>
        
-                <%= form_with(model: @comment, url: [current_user,@post, @comment]) do |f| %> 
+                <%= form_with(model: @comment, url: [current_user, @post, @comment]) do |f| %>  
                 <div class="textfield">		
-                                    <%= f.text_field :message, placeholder: "Add a comment" %>
-                                     <button class="btn btn-camera"> <i class="fa fa-camera-retro" aria-hidden="true"></i>  </button>
-                                    <%= f.hidden_field :post_id, placeholder: '@post_id.id', value: @post&.id %>
-                                    
-                                    
+                    <%= f.text_field :message, placeholder: "Add a comment" %>
+                    <button class="btn btn-camera"> <i class="fa fa-camera-retro" aria-hidden="true"></i>  </button>
+                    <%= f.hidden_field :post_id, placeholder: '@post_id.id', value: @post&.id %>                 
                 </div>
                 <% end %>
             </div>
