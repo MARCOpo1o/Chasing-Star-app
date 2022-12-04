@@ -5,10 +5,7 @@
 
 <div id="locations">
   <% @locations.each do |location| %>
-    <%= render location, date: params[:date] %>
-    <p>
-      <%= link_to "Show this location", location %>
-    </p>
+    <%= render location, date:  @show_date %>
   <% end %>
 </div>
 

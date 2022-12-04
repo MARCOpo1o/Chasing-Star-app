@@ -125,9 +125,6 @@ footer ul li {
 /* sidebar */
 
 aside {
-  section.user_info {
-    margin-top: 20px;
-  }
   section {
     padding: 10px 0;
     margin-top: 20px;
@@ -150,12 +147,18 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
+.gravatar_edit {
+  margin-top: 15px;
 }
 
-.gravatar_edit {
+/* user info */
+.user_info_avatar {
+  width: 100;
+  height: 100;
+}
+
+.user_info_name {
+  color: #222;
   margin-top: 15px;
 }
 

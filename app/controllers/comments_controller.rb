@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     before_action :correct_user,   only: :destroy
    
     def new
-      @user = User.find(params[:user_id])
+      @user = User.find(params[:user_id]) 
       @post = Post.find(params[:post_id])
       @comment = Comment.new
     end

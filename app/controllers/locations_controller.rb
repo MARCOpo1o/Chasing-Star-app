@@ -12,9 +12,10 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @average_rate = @location.posts.length.positive? ? @location.posts.average(:rate).round(1) : 0
     @date = params[:date] == nil ? Date.today : Date.parse(params[:date])
-    @date_diff = (@date - Date.today).to_i
+    @date_diff = (@date - Date.today).to_i >= 0 ? (@date - Date.today).to_i : 0
     @cloudCover = @date_diff > 0 ? getWeatherForecast((@date_diff - 1) * 8) : getWeatherCurrent # a 0 param means 06:00 tomorrow, delta 1 means 3 hour's change, e.g. 8 means 06:00 the day after tomorrow
-    @weatherInfo = @date_diff > 0 ? getWeatherForecastInfo((@date_diff - 1) * 8) : Time.now
+    # @weatherInfo = @date_diff > 0 ? getWeatherForecastInfo((@date_diff - 1) * 8) : Time.now
+    @show_date = @date_diff > 0 ? Date.today + @date_diff : Date.today
     @bortleScale = getLightPollution
     @user = current_user
     @posts = @location.posts.paginate(page: params[:page])
@@ -75,6 +76,9 @@ class LocationsController < ApplicationController
 
   def do_search
     @locations = Location.where("location_name ILIKE ?", "%#{params[:location_name]}%")
+    @date = params[:date] == nil ? Date.today : Date.parse(params[:date])
+    @date_diff = (@date - Date.today).to_i >= 0 ? (@date - Date.today).to_i : 0
+    @show_date = @date_diff > 0 ? Date.today + @date_diff : Date.today
     render :index
   end
 
@@ -123,7 +127,9 @@ class LocationsController < ApplicationController
       forecast = HTTParty.get("https://api.openweathermap.org/data/2.5/forecast?lat=#{lat}&lon=#{log}&appid=#{api_key1}")
       forecast = JSON.parse(forecast.body)
 
-      forecast["list"][hour_ahead]["dt_txt"]
+      info = forecast["list"][hour_ahead].nil? ? "No Data" : forecast["list"][hour_ahead]["dt_txt"]
+
+      info
     end
 
     def getWeatherForecast(hour_ahead)
@@ -135,10 +141,10 @@ class LocationsController < ApplicationController
       cloudCover = nil 
 
       forecast = HTTParty.get("https://api.openweathermap.org/data/2.5/forecast?lat=#{lat}&lon=#{log}&appid=#{api_key1}")
-      forecast = JSON.parse(forecast.body)
-      cloudCover = forecast["list"][hour_ahead]["clouds"]["all"]
+      forecast = JSON.parse(forecast.body) 
+      cloudCover = forecast["list"][hour_ahead].nil? ? "No Data" : forecast["list"][hour_ahead]["clouds"]["all"]
       # puts forecast["list"][hour_ahead]["dt_txt"]
-      cloudCover = cloudCover.to_i
+      cloudCover = cloudCover.to_i if cloudCover != "No Data"
 
       cloudCover
     end
@@ -183,7 +189,9 @@ class LocationsController < ApplicationController
     end
 
     def starVisibility(cloudCover, bortleScale)
-      if cloudCover > 50 or bortleScale > 6
+      if cloudCover == "No Data"
+        return "No Data"
+      elsif cloudCover > 50 or bortleScale > 6
         return 0
       else  
         (100-cloudCover)-(bortleScale-1)*10

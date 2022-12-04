@@ -14,6 +14,6 @@
     <% if current_user?(post.user) %>
       <%= link_to "delete", user_post_path(@user, post), data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
-    <% end %>
+    <% end %> 
   </span>
 </li>

@@ -1,16 +1,16 @@
 <script>
     function select_date(date){
-    document.getElementById("date_form").value= date;
+        document.getElementById("date_form").value= date;
     }
 </script>
 
 <body class="welcome if action_name == 'welcome'">
 <div class="homepage-card">
-            <%= month_calendar do |date| %>
-                <div id="date-outline">
-                    <button class="calendar-button" id="test" value=<%= date %> onclick="select_date(this.value)"><%= date.day %></button>
-                </div>
-            <% end %>
-            <%= render 'search'%>
+    <%= month_calendar do |date| %>
+        <div id="date-outline">
+            <button class="calendar-button" id="test" value=<%= date %> onclick="select_date(this.value)"><%= date.day %></button>
+        </div>
+    <% end %>
+    <%= render 'search'%>
 </div>
 </body>
