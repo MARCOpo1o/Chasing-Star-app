@@ -3,10 +3,14 @@
 
 <h1>Locations</h1>
 
-<div id="locations">
-  <% @locations.each do |location| %>
-    <%= render location, date:  @show_date %>
-  <% end %>
+<div class="container">
+  <div class="gallery">
+    <div class="row" id="locations">
+      <% @locations.each do |location| %>
+        <%= render location, date: @show_date, location: location, cloudCover: nil, bortleScale: nil, score: nil %> 
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Back to home page", root_path %>
 </div>
 
-<%= link_to "Back to home page", root_path %>

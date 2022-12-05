@@ -1,6 +1,6 @@
 <div id="<%= dom_id location %>" class="col-sm-6">
-  <div class="card" style="width: 18rem; height: 30rem">
-    <%= location.image_json == nil ? image_tag("star.jpg") : image_tag(location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"auto") %>
+  <div class="card">
+    <%= location.image_json == nil ? image_tag("star.jpg") : image_tag(location.image_json[0]['attributes']['table']['urls']['small'], height: "auto", width:"auto") %>
     <%= image_tag location.image if location.image.attached? %>
     <div class="card-body">
       <h5 class="card-title"><%= location.location_name %></h5>
@@ -9,6 +9,41 @@
 
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><%= params[:date] == nil ? Date.today :  @show_date%></li>
+      <% if !cloudCover.nil? %>
+        <li class="list-group-item">Cloud Coverage: <%= cloudCover %></li>
+      <% end %>
+      <% if !bortleScale.nil? %>
+        <li class="list-group-item">Bortle Scale: <%= bortleScale %></li>
+      <% end %>
+      <% if !score.nil? %>
+        <li class="list-group-item">Star Visibility: <%= score %></li>
+        <li class="list-group-item">
+          <div>
+            <% if score == "No Data" %>
+              <div>
+                <span class="p-2 bg-secondary text-white">No Data</span>
+              </div>
+            <% elsif score >= 90 %>
+              <div>
+                <span class="p-2 bg-warning text-white">Excellent ★ ★ ★</span>
+              </div>
+            <% elsif score >= 70 %>
+              <div>
+                <span class="p-2 bg-success text-white">Good ★ ★ ☆</span>
+              </div>
+            <% elsif score >= 50 %>
+              <div>
+                <span class="p-2 bg-info text-white">Fair ★ ☆ ☆</span>
+              </div>
+            <% else %>
+              <div>
+                <span class="p-2 bg-secondary text-white">Bad ☆ ☆ ☆</span>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+      
     </ul>
 
     <div class="card-body">

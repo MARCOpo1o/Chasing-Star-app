@@ -1,0 +1,30 @@
+<% provide(:title, 'Recommend') %>
+<div class='row' id='map-row'>
+  <div class='col-sm-5' id='map-left'>
+    <div class="container mx-auto mt-4">
+      <div class="row" id='posts-map'>
+
+          <%= render 'maps/date_form' %>
+
+          <% @locations.each do |location| %>
+             <%# <% cloudCover = @date_diff > 0 ? getWeatherForecast(location, (@date_diff - 1) * 8) : getWeatherCurrent(location) %> 
+             <% cloudCover = location.cloudCoverage.nil? ? (@date_diff > 0 ? getWeatherForecast(location, (@date_diff - 1) * 8) : getWeatherCurrent(location)) : location.cloudCoverage %>
+             <% bortleScale = location.bortleScale.nil? ?  getLightPollution(location) : location.bortleScale %>
+             <% score = starVisibility(cloudCover, bortleScale) %>
+             
+             <% if @date_diff > 5 %>
+                <%= render 'locations/location', location: location, cloudCover: "No Data", bortleScale: "No Data", score: "No Data" %>
+             <% else %>
+                <%= render 'locations/location', location: location, cloudCover: cloudCover, bortleScale: bortleScale, score: score %>
+             <% end %>
+
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class='col-sm-7'>
+    <%= render 'maps/map' %>
+  </div>
+</div>

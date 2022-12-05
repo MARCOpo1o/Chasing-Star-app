@@ -30,7 +30,7 @@
 					<li>Posts <span class="location-profile-stat-count"><%= @location.posts.count %></span></li>
           <li>Date <span class="location-profile-stat-count"><%= params[:date] == nil ? Date.today :  @show_date %></span></li>
           <li>Cloud Coverage <span class="location-profile-stat-count"><%= @cloudCover == nil ? "No data"  : @cloudCover %></span></li>
-          <li>Bortle(light pollution level) <span class="location-profile-stat-count"><%= @bortleScale == nil ? "No data"  : @bortleScale %></span></li>
+          <li>Bortle Scale(light pollution level) <span class="location-profile-stat-count"><%= @bortleScale == nil ? "No data"  : @bortleScale %></span></li>
           
 				</ul>
 

@@ -25,6 +25,7 @@
         'location_name': '<%= pin.location_name %>',
         'location_id': '<%= pin.id %>',
         'image_json': '<%= pin.image_json == nil ? nil : pin.image_json[0]['attributes']['table']['urls']['small'] %>',
+        'score' : '<%= @date_diff <= 5 && !pin.cloudCoverage.nil? && !pin.bortleScale.nil? ? starVisibility(pin.cloudCoverage, pin.bortleScale) : "" %>',
         },
       'geometry':{
         'type': 'Point',
@@ -44,17 +45,27 @@
     // Add markers to the map.
     for (const marker of geojson.features) {
     // Create a DOM element for each marker.
-      // const el = document.createElement('div');
-      // el.className = 'marker';
-      // el.style.backgroundImage = `url(<%= asset_path 'star.webp' %>)`;
-      // el.style.width = `30px`;
-      // el.style.height = `30px`;
-      // el.style.backgroundSize = '100%';
+      const el = document.createElement('div');
+      if (marker.properties.score != "") {
+        if (marker.properties.score >= 90) {
+          el.className = 'marker_orange';
+        } else if (marker.properties.score >= 70) {
+          el.className = 'marker_green';
+        } else if (marker.properties.score >= 50) {
+          el.className = 'marker_blue';
+        } else {
+          el.className = 'marker_gray';
+        }
+      } else {
+        el.className = 'marker_purple';
+      }
+      
+      
   
     // Add markers to the map.
     var image_url = marker.properties.image_json ? marker.properties.image_json : "https://images.unsplash.com/photo-1505322022379-7c3353ee6291?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=220&q=80"
-    console.log(image_url)
-    new mapboxgl.Marker()
+
+    new mapboxgl.Marker(el)
       .setLngLat(marker.geometry.coordinates)
       .setPopup(
         new mapboxgl.Popup({ offset: [0, -25] }) // add popups
@@ -63,6 +74,7 @@
             <h5 class="card-title">${marker.properties.location_name}</h6>
             <h6 class="card-subtitle mb-2 text-muted">${marker.properties.location_name}</h6>
             <img src=${image_url} height="auto" width="220">
+            <h5>${marker.properties.score}/100</h5>
             <a href="locations/${marker.properties.location_id}" class="btn mr-2"><i class="fas fa-link"></i> Show</a>
             `
           )

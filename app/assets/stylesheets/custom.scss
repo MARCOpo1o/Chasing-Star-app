@@ -71,6 +71,10 @@ footer {
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;
+  // position: relative;
+  // height: XXX;
+  bottom: 0;
+  width: 100%;
 }
 
 footer a {
@@ -227,7 +231,8 @@ input {
 }
 
 .card {
-  width: 18rem;
+  width: 25rem;
+  height: auto;
   background: #222;
   border: 1px solid #777;
   color: rgba(250, 250, 250, 0.8);
@@ -530,6 +535,54 @@ aside {
 #map-row {
   margin-top: -62px;
 }
+
+/* Map Marker */
+
+.marker_orange {
+  background-image: url('mapbox-marker-icon-orange.svg');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  // cursor: pointer;
+}
+
+.marker_green {
+  background-image: url('mapbox-marker-icon-green.svg');
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  // cursor: pointer;
+}
+
+.marker_blue {
+  background-image: url('mapbox-marker-icon-blue.svg');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  // cursor: pointer;
+}
+
+.marker_gray {
+  background-image: url('mapbox-marker-icon-gray.svg');
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  // cursor: pointer;
+}
+
+.marker_purple {
+  background-image: url('mapbox-marker-icon-purple.svg');
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  // cursor: pointer;
+}
+
 /* Media Query */
 
 @media screen and (max-width: 1000px) {
