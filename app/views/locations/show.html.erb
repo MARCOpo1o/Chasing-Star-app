@@ -8,7 +8,7 @@
 
 			<div class="location-profile-image">
 
-        <%= @location.image_json == nil ? image_tag("star.jpg") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"auto") %>
+        <%= @location.image_json == nil ? image_tag("star.jpg", width:"250", height:"250") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], width:"250", height:"250") %>
         <%= image_tag @location.image if @location.image.attached? %>
 
 			</div>
@@ -28,12 +28,25 @@
 				<ul>
 					<li>User rating <span class="location-profile-stat-count"><%= @average_rate %> <%= '★' * (@average_rate.floor) + '☆' * (5-@average_rate.floor)%></span></li>
 					<li>Posts <span class="location-profile-stat-count"><%= @location.posts.count %></span></li>
-          <li>Date <span class="location-profile-stat-count"><%= params[:date] == nil ? Date.today :  params[:date] %></span></li>
-          <li>Weather <span class="location-profile-stat-count"><%= @weather == nil ? "No data"  : @weather.weather_type %></span></li>
-          <li>Bortle(pollution level) <span class="location-profile-stat-count"><%= @light_pollution == nil ? "No data"  : @light_pollution.pollution_index %></span></li>
-          <li>Star Visibility  <span class="location-profile-stat-count"><%= @score %>/100</span></li>
-          <div >
-              <% if @score >= 90 %>
+          <li>Date <span class="location-profile-stat-count"><%= params[:date] == nil ? Date.today :  @show_date %></span></li>
+          <li>Cloud Coverage <span class="location-profile-stat-count"><%= @cloudCover == nil ? "No data"  : @cloudCover %></span></li>
+          <li>Bortle Scale(light pollution level) <span class="location-profile-stat-count"><%= @bortleScale == nil ? "No data"  : @bortleScale %></span></li>
+          
+				</ul>
+
+			</div>
+  
+			<div class="location-profile-bio">
+          <div>
+            Star visibility
+          </div>
+          <span class="location-profile-stat-count"><%= @score == "No Data" ? "" : @score.to_s + "/100" %></span>
+				  <div>
+              <% if @score == "No Data" %>
+                <div>
+                  <span class="p-2 bg-secondary text-white">No Data</span>
+                </div>
+              <% elsif @score >= 90 %>
                 <div>
                   <span class="p-2 bg-warning text-white">Excellent ★ ★ ★</span>
                 </div>
@@ -51,66 +64,25 @@
                 </div>
               <% end %>
           </div>
-				</ul>
-
 			</div>
-  
-			<div class="location-profile-bio">
 
-				<p><span class="location-profile-nick-name"><%= @location.location_name %></span> [Park] [Mountain] Lorem ipsum dolor sit, amet consectetur adipisicing elit 🌌🔭🌃</p> 
-			</div>
->>>>>>> front-end-and-back-end-connecting
+      <div class="card-body-2">
+          <%= link_to "Back to Map",  map_path, {:class => "btn location-profile-save-btn"}  %>
+      </div>
+
       <% if !current_user.nil? %>
-        <div class="card-body-2">
-            <%= link_to "New post",  new_user_post_path(@user, location_id: @location.id), {:class => "btn location-profile-save-btn"}  %>
-        </div>
+            <%= link_to "Make a new post",  new_user_post_path(@user, location_id: @location.id), {:class => "btn location-profile-save-btn"}  %> 
         <% else %>
-        <div class="card-body-2">
             <%= link_to "Sign in to make a post",  login_path, {:class => "btn location-profile-save-btn"} %> 
-        </div>
       <% end %>
-		</div>
-    
-		<!-- End of location-profile section -->
-
 	</div>
-	<!-- End of container -->
-
-
- 
-<!--
-<div class="col-md">
-    
-      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-        <h3>Posts (<%= @location.posts.count %>)</h3> 
-        <ol class="posts">
-          <%= render @posts %> 
-        </ol>
-      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-    
-  </div>
--->
 
 <main>
   <div class="container">
     <div class="gallery">
-      <%= render @posts %> 
+      <% @posts.each do |post| %> 
+        <%= render '/posts/post', post:post %> 
+      <% end %> 
     </div>
   </div>
 </main>
-
-
- <script>
-  const posts = document.querySelectorAll('.gallery-item');
-
-  posts.forEach(post => {
-    post.addEventListener('click', () => {
-      //Get original image URL
-      const imgUrl = post.firstElementChild.href;
-      //Open image in new tab
-      // window.open(imgUrl, '_blank');
-      window.location.replace(imgUrl);
-      
-    });
-  });
-</script>

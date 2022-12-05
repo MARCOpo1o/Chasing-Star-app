@@ -2,12 +2,10 @@
 
 one:
   pollution_index: 1
-  time: 2022-10-04 17:45:54
-  coordinates: 
+  date: 2022-10-04 17:45:54
   location_id: 1
 
 two:
   pollution_index: 1
-  time: 2022-10-04 17:45:54
-  coordinates: 
+  date: 2022-10-04 17:45:54
   location_id: 1

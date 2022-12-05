@@ -2,12 +2,10 @@
 
 one:
   weather_type: Sunny
-  time: 2022-10-04 17:44:21
-  coordinates: 
+  date: 2022-10-04 17:44:21
   location_id: 1
 
 two:
   weather_type: Rain
-  time: 2022-10-04 17:44:21
-  coordinates: 
+  date: 2022-10-04 17:44:21
   location_id: 1

@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     end
   end
   resources :user_locations
-  resources :maps
+  resources :maps do
+    collection do
+      get 'recommend'
+    end
+  end
   
   
 

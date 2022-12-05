@@ -1,10 +1,10 @@
 
 <div class="row d-flex justify-content-center">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_tag('#', method: "get") do%>
+    <%= form_tag(recommend_maps_path, method: "get") do%> 
       <label>Date</label>
-        <%= date_field_tag(:date, Date.today, id: "date_form") %>
-        <%= submit_tag("Recommend", class: 'map-btn') %>
+      <%= date_field_tag(:date, params[:date].nil? ? Date.today : params[:date], id: "date_form") %>
+      <%= submit_tag("Recommend", class: 'map-btn') %>
     <% end %>
   </div>
 </div>

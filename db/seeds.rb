@@ -16,7 +16,6 @@
 
 require 'faker'
 require 'json'
-require_relative 'seed_more.rb'
 
 def configure
     Unsplash.configure do |config|
@@ -33,17 +32,58 @@ def getStarPic
     return image
 end
 
+def getLightPollution(log, lat)
+
+    api_key2 = ENV['LIGHT_POLLUTION_API_KEY']
+
+    def cleanLPdata(light_pollution)
+      #remove the number after the comma
+      return light_pollution.first(10).to_f
+    end
+
+    light_pollution = HTTParty.get("https://www.lightpollutionmap.info/QueryRaster/?ql=wa_2015&qt=point&qd=#{log},#{lat}&key=#{api_key2}")
+    puts "light_pollution: #{light_pollution}"
+    artificial_brightness = cleanLPdata(light_pollution)
+    sqm = Math.log10((artificial_brightness+0.171168465)/108000000)/(-0.4)
+
+    def bortleScale(sqm)
+      light_pollution = sqm.to_f
+      if light_pollution > 21.99
+        return 1
+      elsif light_pollution > 21.89
+        return 2
+      elsif light_pollution > 21.69
+        return 3
+      elsif light_pollution > 20.49
+        return 4
+      elsif light_pollution > 19.5
+        return 5
+      elsif light_pollution > 18.94
+        return 6
+      elsif light_pollution > 18.38
+        return 7
+      else
+        return 8
+      end
+    end
+
+    bortleScale(sqm)
+end
+
 
 #locations
 national_parks = File.read(File.join(Rails.root, 'app', 'assets', 'dataset', 'national_parks.json'))
 national_parks_hash = JSON.parse(national_parks)
-i = 1;
+i = 1
+
 national_parks_hash.each do |park|
-    if i < 50
-        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], image_json: getStarPic)
+    bortleScale = getLightPollution(park['longitude'], park['latitude'])
+
+    if i <= 50 # unsplash api only allows 50 requests per hour
+        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], image_json: getStarPic, bortleScale: bortleScale)
         i = i+1
     else 
-        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude']) 
+        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], bortleScale: bortleScale) 
     end
 end
 

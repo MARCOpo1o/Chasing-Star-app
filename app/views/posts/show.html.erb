@@ -2,8 +2,7 @@
 
 <div class="layout">
 	<aside> 
-        <%= image_tag("star.jpg") %>
-        <%= image_tag @post.image if @post.image.attached? %>
+        <%= @post.image.attached? ? image_tag(@post.image) : image_tag("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60?w=500&h=500&fit=crop")%>
 	</aside>
 	
 	
@@ -19,7 +18,7 @@
             </figure>
             <div class="content">
                 <h3> <%= @post.user.user_name %></h3>
-                <p class="title"> Freelancer </p>
+                <p class="title"> Rate: <%= @post.rate %> / 5</p>
                 <span class="updated"> <%= @post.created_at %> posted</span>
             </div>
         </header>
@@ -30,8 +29,7 @@
                 <%= @post.message %>
             </p>
             <div class="stats">
-                <span clas="likes"> 12 Likes </span>
-                <span class="comments"> . 2 Comments</span>
+                <span class="comments"> <%= @post.comments.count %> Comments</span>
             </div>
             <div class="post-controls">
                 <button class="btn btn-like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i> Like </button>
@@ -41,11 +39,8 @@
         </section>
 
         <!-- Post Comments Section -->
-        <section class="post-comment-feed">
-            
-                    
+        <section class="post-comment-feed">                 
             <% @comments.each do |comment|%>
-                
                 <div class="comment">
                     <figure class="avatar-wrapper">
                         <%= link_to gravatar2_for(comment.user, size: 50), comment.user %>
@@ -59,21 +54,27 @@
                 </div>
             <% end %>      
 
-            <div class="add-comment"> 
-                <figure class="avatar-wrapper">
-                    <%= link_to gravatar2_for(@post.user, size: 50), @post.user %>
-                </figure>
-       
-                <%= form_with(model: @comment, url: [current_user,@post, @comment]) do |f| %> 
-                <div class="textfield">		
-                                    <%= f.text_field :message, placeholder: "Add a comment" %>
-                                     <button class="btn btn-camera"> <i class="fa fa-camera-retro" aria-hidden="true"></i>  </button>
-                                    <%= f.hidden_field :post_id, placeholder: '@post_id.id', value: @post&.id %>
-                                    
-                                    
+            <% if !current_user.nil? %>
+                <div class="add-comment"> 
+                    <figure class="avatar-wrapper">
+                        <%= link_to gravatar2_for(current_user, size: 50), @post.user %>
+                    </figure>
+        
+                    <%= form_with(model: @comment, url: [current_user, @post, @comment]) do |f| %>  
+                        <div class="textfield">		
+                            <%= f.text_field :message, placeholder: "Add a comment" %>
+                            <button class="btn btn-camera"> <i class="fa fa-message" aria-hidden="true"></i>  </button>
+                            <%= f.hidden_field :post_id, placeholder: '@post_id.id', value: @post&.id %>                 
+                        </div>
+                    <% end %>
                 </div>
-                <% end %>
-            </div>
+            <% else %>
+                <div class="card-body-2">
+                    <%= link_to "Sign in to make a post",  login_path, {:class => "btn location-profile-save-btn"} %> 
+                </div>
+            <% end %>
+            <%= link_to "Back to location",  @post.location, {:class => "btn location-profile-save-btn"} %> 
+            
         </section>
 
     </article>

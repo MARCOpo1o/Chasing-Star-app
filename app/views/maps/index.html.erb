@@ -3,9 +3,13 @@
   <div class='col-sm-5' id='map-left'>
     <div class="container mx-auto mt-4">
       <div class="row" id='posts-map'>
-        <%= render 'maps/date_form' %>
-          <%= render @locations %>
-        <%= will_paginate @locations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+          <%= render 'maps/date_form' %>
+
+          <% @locations.each do |location|%>
+            <%= render 'locations/location', location: location, cloudCover: nil, bortleScale: nil, score: nil %>
+          <% end %>
+          <%= will_paginate @locations, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %> 
       </div>
     </div>
   </div>
@@ -15,7 +19,7 @@
   </div>
 </div>
 
-<script>
+<%# <script>
   var footer = document.getElementById("div-footer");
   footer.style.display = "none";
-</script>
+</script> %>

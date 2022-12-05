@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
     @comments = @post.comments.paginate(page: params[:page]) 
+    @comment = Comment.new
     session.delete(:return_to)
     session[:return_to] = request.original_url
   end
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
       redirect_to @post.location
     else
       render 'new', status: :unprocessable_entity
-    end
+    end 
   end
 
   def destroy
