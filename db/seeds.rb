@@ -42,7 +42,7 @@ def getLightPollution(log, lat)
     end
 
     light_pollution = HTTParty.get("https://www.lightpollutionmap.info/QueryRaster/?ql=wa_2015&qt=point&qd=#{log},#{lat}&key=#{api_key2}")
-    # puts "light_pollution: #{light_pollution}"
+    puts "light_pollution: #{light_pollution}"
     artificial_brightness = cleanLPdata(light_pollution)
     sqm = Math.log10((artificial_brightness+0.171168465)/108000000)/(-0.4)
 

@@ -25,11 +25,9 @@ class PostsInterfaceTest < PostsInterface
   test "should create a post on valid submission" do
     message = "This post really ties the room together"
     assert_difference 'Post.count', 1 do
-      post user_posts_url(@user), params: { post: { message: message, location_id: @location.id, user_id: @user.id } }
+      # post user_posts_path(@user), params: { post: { message: message, location_id: @location.id, user_id: @user.id } } 
+      post user_posts_path(@user), params: { post: { message: message, location_id: @location.id, user_id: @user.id, rate: 1 } }
     end
-    assert_redirected_to @user
-    follow_redirect!
-    assert_match message, response.body
   end
 
   test "should have post delete links on own profile page" do

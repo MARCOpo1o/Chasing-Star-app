@@ -2,13 +2,11 @@
 
 waltham:
   location_name: waltham
-  coordinates:
   average_rate: 3.0
   tag: [Town]
 
 boston:
   location_name: boston
-  coordinates:
   average_rate: 4.0
   tag: [City]
  

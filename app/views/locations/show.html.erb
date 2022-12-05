@@ -8,7 +8,7 @@
 
 			<div class="location-profile-image">
 
-        <%= @location.image_json == nil ? image_tag("star.jpg") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], height: "250", width:"250") %>
+        <%= @location.image_json == nil ? image_tag("star.jpg", width:"250", height:"250") : image_tag(@location.image_json[0]['attributes']['table']['urls']['small'], width:"250", height:"250") %>
         <%= image_tag @location.image if @location.image.attached? %>
 
 			</div>
@@ -71,7 +71,7 @@
       </div>
 
       <% if !current_user.nil? %>
-            <%= link_to "Make a new post",  new_user_post_path(@user, location_id: @location.id), {:class => "btn location-profile-save-btn"}  %>
+            <%= link_to "Make a new post",  new_user_post_path(@user, location_id: @location.id), {:class => "btn location-profile-save-btn"}  %> 
         <% else %>
             <%= link_to "Sign in to make a post",  login_path, {:class => "btn location-profile-save-btn"} %> 
       <% end %>
