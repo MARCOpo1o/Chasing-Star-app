@@ -29,7 +29,8 @@ end
 def getStarPic
     configure
     image = Unsplash::Photo.random(count: 1, query: 'stars in the sky')
-    return image
+    puts "star pic: #{image}"
+    return image.nil? ? nil : image
 end
 
 def getLightPollution(log, lat)
