@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
   get    "/map",     to: "maps#index"
-  get    "/detail1",     to: "locations#detail1"
-  get    "/detail2",     to: "locations#detail2"
   # get    "/post",    to: "posts#new"
   # post   "/post",    to: "posts#create"
 
