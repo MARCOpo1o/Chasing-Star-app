@@ -38,9 +38,35 @@ Click [me](https://www.figma.com/proto/KOc5UqZg2ftcQqWEvJlc2Z/Chasing-Stars?node
 ## Features
 
 - **Interactive calendar** Enable users to browse and select date.
+```
+gem "simple_calendar", "~> 2.4"
+
+```
+
 - **Location search** Search locations based on location name and selected date.
+```
+def do_search
+    @locations = Location.where("location_name ILIKE ?", "%#{params[:location_name]}%")
+    @date = params[:date] == nil ? Date.today : Date.parse(params[:date])
+    @date_diff = (@date - Date.today).to_i >= 0 ? (@date - Date.today).to_i : 0
+    @show_date = @date_diff > 0 ? Date.today + @date_diff : Date.today 
+    render :index
+  end
+```
 - **Dynamic map** Display locations with different markers based on each one's star visibility score, click the marker will popup location's info.
+
 - **Star visibility calculation** Calculate a location's star visibility by applying light pollution API, weather API, and Geo API through a carefully researched and tested algorithm
+```
+    def starVisibility(cloudCover, bortleScale)
+        if cloudCover == "No Data"
+          return "No Data"
+        elsif cloudCover > 50 or bortleScale > 6
+          return 0
+        else  
+          (100-cloudCover)-(bortleScale-1)*10
+        end
+    end
+```
 - **Stargazing Recommendation** Choose a date and recommend the best stargazing locations of that day
 - **Explore** Display hot posts
 - **Stargazing Community** Allow users make posts with pictures to rate locations, and make comments to other users' posts.
@@ -154,8 +180,8 @@ rails test
 
 - Jingqian Cheng: Backend  jingqiancheng@brandeis.edu
 - Jian He: Frontend, UI/UX Design  jianhe@brandeis.edu
-- Marco Qin: API/Algorithm  
-- Michael Jiang: Frontend  
+- Marco Qin: API/Algorithm  tqin@brandeis.edu
+- Michael Jiang: Frontend  michaeljiang@brandeis.edu
 
 ## Next steps/reflections
 
@@ -164,3 +190,7 @@ rails test
 - Since the query of the app is relatively slow, we plan to add a rule to let the database update daily, this can reduce the processing time.
 
 - We also plan to use Redis to save the results of API access by users, so that we can save some time for other users.
+
+By developing this project, we've learned a lot about software development and Ruby on Rails framework. There's a lot of things to consider in software development such as testing, scaling, etc.
+
+We are going to continue working on this project and hope it can serve more people in the future.
