@@ -10,9 +10,9 @@
     <% if @user.posts.any? %>
       <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
       <h3>Posts (<%= @user.posts.count %>)</h3>
-        <div class="row">
+        <div class="grid-container">
           <% @posts.each do |post| %> 
-            <div class="col-sm-4">
+            <div class="grid-item">
               <%= render '/posts/post', post:post %> 
             </div>
           <% end %> 
