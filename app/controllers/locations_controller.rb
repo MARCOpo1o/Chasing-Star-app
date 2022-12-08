@@ -35,7 +35,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     # @location.image.attach(params[:location][:image])
   end
-
+ 
   # POST /locations or /locations.json
   def create
     @location = Location.new(location_params)

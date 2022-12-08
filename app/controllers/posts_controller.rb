@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
-    @comments = @post.comments.paginate(page: params[:page]) 
+    @comments = @post.comments.paginate(page: params[:page], :per_page => 5) 
     @comment = Comment.new
     session.delete(:return_to)
     session[:return_to] = request.original_url
@@ -22,13 +22,15 @@ class PostsController < ApplicationController
     @post = @user.posts.new(post_params)
     @post.image.attach(params[:post][:image])
     
-
     if @post.save
       flash[:success] = "Post created!"
       redirect_to @post.location
     else
-      render 'new', status: :unprocessable_entity
+      puts @post.errors.full_messages
+      flash[:danger] = @post.errors.full_messages
+      redirect_to new_user_post_path(@user)
     end 
+
   end
 
   def destroy

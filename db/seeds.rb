@@ -29,7 +29,8 @@ end
 def getStarPic
     configure
     image = Unsplash::Photo.random(count: 1, query: 'stars in the sky')
-    return image
+    puts "star pic: #{image}"
+    return image.nil? ? nil : image
 end
 
 def getLightPollution(log, lat)
@@ -70,53 +71,59 @@ def getLightPollution(log, lat)
     bortleScale(sqm)
 end
 
+if ENV["users"]
+  #test user
+  User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
 
-#locations
-national_parks = File.read(File.join(Rails.root, 'app', 'assets', 'dataset', 'national_parks.json'))
-national_parks_hash = JSON.parse(national_parks)
-i = 1
+  # Create a main sample user.
+  User.create!(user_name:  "Example User",
+      email: "example@railstutorial.org",
+      password:              "foobar",
+      password_confirmation: "foobar",
+      admin: true)
 
-national_parks_hash.each do |park|
-    bortleScale = getLightPollution(park['longitude'], park['latitude'])
-
-    if i <= 50 # unsplash api only allows 50 requests per hour
-        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], image_json: getStarPic, bortleScale: bortleScale)
-        i = i+1
-    else 
-        Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], bortleScale: bortleScale) 
-    end
+  # Generate a bunch of additional users.
+  100.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(user_name:  name,
+        email: email,
+        password:              password,
+        password_confirmation: password)
+  end
+  # Generate posts for a subset of users.
 end
 
-#test user
-User.create(user_name: Faker::Name.name, email: "aaa@aaa.com", password: "aaaaaa")
+if ENV["locations"]
+  #locations
+  national_parks = File.read(File.join(Rails.root, 'app', 'assets', 'dataset', 'national_parks.json'))
+  national_parks_hash = JSON.parse(national_parks)
+  i = 1
 
-# Create a main sample user.
-User.create!(user_name:  "Example User",
-    email: "example@railstutorial.org",
-    password:              "foobar",
-    password_confirmation: "foobar",
-    admin: true)
+  national_parks_hash.each do |park|
+      bortleScale = getLightPollution(park['longitude'], park['latitude'])
 
-# Generate a bunch of additional users.
-100.times do |n|
-name  = Faker::Name.name
-email = "example-#{n+1}@railstutorial.org"
-password = "password"
-User.create!(user_name:  name,
-      email: email,
-      password:              password,
-      password_confirmation: password)
-end
-# Generate posts for a subset of users.
-users = User.order(:created_at).take(10)
-10.times do
-  message = Faker::Lorem.sentence(word_count: 10)
-  users.each { |user| user.posts.create!(message: message, rate: Faker::Number.between(from: 1, to: 5), location_id: Faker::Number.between(from: 1, to: 10)) }
+      if i <= 50 # unsplash api only allows 50 requests per hour
+          Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], image_json: getStarPic, bortleScale: bortleScale)
+          i = i+1
+      else 
+          Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], bortleScale: bortleScale) 
+      end
+  end
 end
 
-10.times do
-  comment = Faker::Lorem.sentence(word_count: 10) 
-  users.each { |user| user.comments.create!(message: comment, post_id: Faker::Number.between(from: 1, to: 100)) }   
+if ENV["posts"]
+  users = User.order(:created_at).take(10)
+  5.times do
+    message = Faker::Lorem.sentence(word_count: 10)
+    users.each { |user| user.posts.create!(message: message, rate: Faker::Number.between(from: 1, to: 5), location_id: Faker::Number.between(from: 1, to: 10), image_json: getStarPic) }
+  end
+  
+  5.times do
+    comment = Faker::Lorem.sentence(word_count: 10) 
+    users.each { |user| user.comments.create!(message: comment, post_id: Faker::Number.between(from: 1, to: 10)) }   
+  end
 end
 
 
