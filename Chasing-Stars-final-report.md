@@ -84,6 +84,38 @@ Click [me](https://dbdiagram.io/d/63404b3ff0018a1c5fba3e02) to see the app's sch
 
 ![Schema image](/schema_screenshot.png)
 
+## A quick view of the app
+
+**Home Page**
+![home_page](/home_page.png)
+
+---
+
+**Star Map**
+![star_map](/map.png)
+
+---
+
+**Explore**
+![explore](/explore.png)
+
+---
+
+**Location Page**
+![location](/location.png)
+
+---
+
+**Post Page**
+![post](/post.png)
+
+---
+
+**User's Posts**
+![user_post](/user_posts.png)
+
+---
+
 ## Technologies
 
 ### Light pollution algorithm
