@@ -19,7 +19,6 @@ class PostsInterfaceTest < PostsInterface
     assert_no_difference 'Post.count' do
       post user_posts_url(@user), params: { post: { message: "", location_id: @location.id, user_id: @user.id } }
     end
-    assert_select 'div#error_explanation'
   end
 
   test "should create a post on valid submission" do

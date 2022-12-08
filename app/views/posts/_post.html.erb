@@ -1,6 +1,14 @@
 <%= link_to user_post_path(post.user, post) do %>
 	<div class="gallery-item" tabindex="0">
-		<%= post.image.attached? ? image_tag(post.image, :class => "gallery-image") : image_tag("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60?w=500&h=500&fit=crop", :class => "gallery-image")%>
+
+		<% if post.image.attached? %>
+			<%= image_tag(post.image, :class => "gallery-image") %>
+		<% elsif !post.image_json.nil? %>
+			<%= image_tag(post.image_json[0]['attributes']['table']['urls']['small'], :class => "gallery-image") %>
+		<% else %>
+			<%= image_tag("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60?w=500&h=500&fit=crop", :class => "gallery-image") %>
+		<% end %>
+		
 		<div class="gallery-item-info">
 			<ul>
 				<li class="gallery-item-likes"><i class="fas fa-user" aria-hidden="true"></i> <%= post.user.user_name %></li>

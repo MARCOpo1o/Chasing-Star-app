@@ -5,7 +5,7 @@ class MainPagesController < ApplicationController
   def explore
     count =  Post.count
     posts = []
-    50.times do
+    30.times do
       random_offset = rand(count)
       posts.push(Post.offset(random_offset).first)
     end

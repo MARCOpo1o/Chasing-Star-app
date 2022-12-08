@@ -4,7 +4,7 @@
 <div class="row d-flex justify-content-center">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @post, url: [user, post]) do |f| %> 
-        <%= render 'shared/error_messages', object: f.object %>
+        <%= render 'shared/error_messages', object: f.object %> 
 
         <%= f.label :location_name %>
         <div>
@@ -21,10 +21,12 @@
         <%= f.label :rate %>
         <%= f.number_field :rate, class: 'form-control', placeholder: "Rate this place" %>
         
-        <%= f.submit "Make a post", class: "map-btn" %>
+        <%= f.label :photo %>
         <span class="image">
            <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
         </span>
+        <%= f.submit "Make a post", class: "map-btn" %>
+        
     <% end %>
   </div>
 </div>
