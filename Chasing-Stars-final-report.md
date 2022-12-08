@@ -63,7 +63,44 @@ Click [me](https://dbdiagram.io/d/63404b3ff0018a1c5fba3e02) to see the app's sch
 ### Light pollution algorithm
 
 ```
-
+def getLightPollution(location)
+        @location = location 
+        api_key2 = ENV['LIGHT_POLLUTION_API_KEY']
+        log = @location.longitude #longitude
+        lat = @location.latitude #latitude
+  
+        def cleanLPdata(light_pollution)
+          #remove the number after the comma
+          return light_pollution.first(10).to_f
+        end
+    
+        light_pollution = HTTParty.get("https://www.lightpollutionmap.info/QueryRaster/?ql=wa_2015&qt=point&qd=#{log},#{lat}&key=#{api_key2}")
+        artificial_brightness = cleanLPdata(light_pollution)
+        sqm = Math.log10((artificial_brightness+0.171168465)/108000000)/(-0.4)
+    
+        def bortleScale(sqm)
+          light_pollution = sqm.to_f
+          if light_pollution > 21.99
+            return 1
+          elsif light_pollution > 21.89
+            return 2
+          elsif light_pollution > 21.69
+            return 3
+          elsif light_pollution > 20.49
+            return 4
+          elsif light_pollution > 19.5
+            return 5
+          elsif light_pollution > 18.94
+            return 6
+          elsif light_pollution > 18.38
+            return 7
+          else
+            return 8
+          end
+        end
+  
+        bortleScale(sqm)
+    end
 ```
 
 ### List of dependencies on APIs, gems and libraries
@@ -115,11 +152,15 @@ rails test
 
 ## Team members
 
-- Jingqian Cheng: Backend  
-- Jian He: Frontend, UI/UX Design  
+- Jingqian Cheng: Backend  jingqiancheng@brandeis.edu
+- Jian He: Frontend, UI/UX Design  jianhe@brandeis.edu
 - Marco Qin: API/Algorithm  
 - Michael Jiang: Frontend  
 
 ## Next steps/reflections
 
-For next steps, we are going to work on user profile page and add more useful tools for stargazing.
+- For next steps, we are going to work on user profile page and add more useful tools for stargazing.
+
+- Since the query of the app is relatively slow, we plan to add a rule to let the database update daily, this can reduce the processing time.
+
+- We also plan to use Redis to save the results of API access by users, so that we can save some time for other users.
