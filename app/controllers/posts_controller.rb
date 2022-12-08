@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
-    @comments = @post.comments.paginate(page: params[:page]) 
+    @comments = @post.comments.paginate(page: params[:page], :per_page => 5) 
     @comment = Comment.new
     session.delete(:return_to)
     session[:return_to] = request.original_url

@@ -1,20 +1,23 @@
 <% provide(:title, @user.user_name) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="row">
   <div class="col-md-4">
-    
       <%= render 'shared/user_info'%>
-    
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-4">
+    <div class="container">
     <% if @user.posts.any? %>
       <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
       <h3>Posts (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <% @posts.each do |post| %>
-          <%= render 'posts/post-original', post: post%> 
-        <% end %>
-      </ol>     
+        <div class="row">
+          <% @posts.each do |post| %> 
+            <div class="col-sm-4">
+              <%= render '/posts/post', post:post %> 
+            </div>
+          <% end %> 
+        </div>
+      </div>
       <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
     <% end %>
   </div> 

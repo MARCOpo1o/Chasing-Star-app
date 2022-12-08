@@ -1,6 +1,6 @@
 <div id="<%= dom_id location %>" class="col-sm-6">
   <div class="card">
-    <%= location.image_json == nil ? image_tag("star.jpg") : image_tag(location.image_json[0]['attributes']['table']['urls']['small'], height: "auto", width:"auto") %>
+    <%= location.image_json == nil ? image_tag("star.jpg", :class => "gallery-card-image") : image_tag(location.image_json[0]['attributes']['table']['urls']['small'], :class => "gallery-card-image") %>
     <%= image_tag location.image if location.image.attached? %>
     <div class="card-body">
       <h5 class="card-title"><%= location.location_name %></h5>

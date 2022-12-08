@@ -2,14 +2,19 @@
 
 <div class="layout">
 	<aside> 
-        <%= @post.image.attached? ? image_tag(@post.image) : image_tag("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60?w=500&h=500&fit=crop")%>
-	</aside>
-	
+        <% if @post.image.attached? %>
+			<%= image_tag(@post.image, :class => "gallery-show-image") %>
+		<% elsif !@post.image_json.nil? %>
+			<%= image_tag(@post.image_json[0]['attributes']['table']['urls']['small'], :class => "gallery-show-image") %>
+		<% else %>
+			<%= image_tag("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60?w=500&h=500&fit=crop", :class => "gallery-show-image") %>
+		<% end %>
+    </aside>
 	
     <article class="post">
     <div class="info"> 
-        <a href="#" class="user"> User name </a>
-        <span class="text"> commented on this</span>
+        <%= link_to @post.user.user_name, @post.user %>
+        <span class="text"> 's post</span>
         </div>
         <!-- Post Header -->
         <header class="post-header">
@@ -18,13 +23,14 @@
             </figure>
             <div class="content">
                 <h3> <%= @post.user.user_name %></h3>
-                <p class="title"> Rate: <%= @post.rate %> / 5</p>
+                <p class="title"> <%= @post.location.location_name %></p>
+                <p class="title"> Rate: <%= "★" * @post.rate + "☆" * (5-@post.rate)%></p>
                 <span class="updated"> <%= @post.created_at %> posted</span>
             </div>
         </header>
         
         <!-- Post Content Section -->
-        <section class="post-content">
+        <section class="post-content"> 
             <p class="content"> 
                 <%= @post.message %>
             </p>
@@ -32,14 +38,13 @@
                 <span class="comments"> <%= @post.comments.count %> Comments</span>
             </div>
             <div class="post-controls">
-                <button class="btn btn-like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i> Like </button>
-                <button class="btn btn-comment"> <i class="fa fa-comment" aria-hidden="true"></i> Comment </button>
-                <button class="btn btn-share"> <i class="fa fa-share" aria-hidden="true"></i> Share </button>
+                <button class="btn btn-comment"> <i class="fa fa-comment" aria-hidden="true"></i> Comments </button>
             </div>
         </section>
 
         <!-- Post Comments Section -->
-        <section class="post-comment-feed">                 
+        <section class="post-comment-feed"> 
+
             <% @comments.each do |comment|%>
                 <div class="comment">
                     <figure class="avatar-wrapper">
@@ -52,7 +57,9 @@
                         <h5 class="updated"> <%= comment.created_at %> commented </h5>
                     </div>
                 </div>
-            <% end %>      
+            <% end %>   
+
+            <%= will_paginate @comments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>   
 
             <% if !current_user.nil? %>
                 <div class="add-comment"> 
