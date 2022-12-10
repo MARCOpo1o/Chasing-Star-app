@@ -160,6 +160,7 @@ def getLightPollution(location)
         bortleScale(sqm)
     end
 ```
+The algorithm is using cloud coverage and the light pollution to determine the ability to see stars in a given location. The weather API provides the level of cloud coverage from 0 to 100. 0 means no cloud is present in the sky, 100 means cloud overcast. The algorithm also converts the light pollution into the Bortle score using a function published by an American astronomer John E. Bortle.  In the end, the algorithm weights the cloud coverage and the Bortle score of that location and calculates the score on how well users can see stars at a given moment.
 
 ### List of dependencies on APIs, gems and libraries
 
