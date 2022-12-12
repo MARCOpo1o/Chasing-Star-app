@@ -205,7 +205,7 @@ rails test
 
 [**Link to architecture diagram**](https://lucid.app/lucidchart/6214e970-656c-42aa-95b4-594324bcabd2/edit?viewport_loc=-2497%2C-88%2C4311%2C4084%2C0_0&invitationId=inv_9724ac0e-4536-4011-80ba-9fc82873633f)
 
-![architecture_image](picscs/application_diagram.png)
+![architecture_image](pics/application_diagram.png)
 
 
 
