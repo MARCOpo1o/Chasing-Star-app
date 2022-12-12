@@ -82,37 +82,37 @@ User can send a post to a location, and other users can see this post by visitin
 
 Click [me](https://dbdiagram.io/d/63404b3ff0018a1c5fba3e02) to see the app's schema on [dbdiagram](https://dbdiagram.io/d/63404b3ff0018a1c5fba3e02).
 
-![Schema image](/schema_screenshot.png)
+![Schema image](pics/schema_screenshot.png)
 
 ## A quick view of the app
 
 **Home Page**
-![home_page](/home_page.png)
+![home_page](pics/home_page.png)
 
 ---
 
 **Star Map**
-![star_map](/map.png)
+![star_map](pics/map.png)
 
 ---
 
 **Explore**
-![explore](/explore.png)
+![explore](pics/explore.png)
 
 ---
 
 **Location Page**
-![location](/location.png)
+![location](pics/location.png)
 
 ---
 
 **Post Page**
-![post](/post.png)
+![post](pics/post.png)
 
 ---
 
 **User's Posts**
-![user_post](/user_posts.png)
+![user_post](pics/user_posts.png)
 
 ---
 
@@ -205,7 +205,7 @@ rails test
 
 [**Link to architecture diagram**](https://lucid.app/lucidchart/6214e970-656c-42aa-95b4-594324bcabd2/edit?viewport_loc=-2497%2C-88%2C4311%2C4084%2C0_0&invitationId=inv_9724ac0e-4536-4011-80ba-9fc82873633f)
 
-![architecture_image](/application_diagram.png)
+![architecture_image](picscs/application_diagram.png)
 
 
 
