@@ -98,3 +98,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :production do
+  gem "aws-sdk-s3", "1.114.0", require: false
+end
