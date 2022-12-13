@@ -22,7 +22,7 @@ class LocationsController < ApplicationController
     
     @score = starVisibility(@cloudCover, @bortleScale)
     session.delete(:return_to)
-    session[:return_to] = request.original_url
+    session[:return_to] = request.original_url 
   end
 
   # GET /locations/new

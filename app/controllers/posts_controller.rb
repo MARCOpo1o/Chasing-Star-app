@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.paginate(page: params[:page], :per_page => 5) 
     @comment = Comment.new
     session.delete(:return_to)
-    session[:return_to] = request.original_url
+    session[:return_to] = request.original_url 
   end
 
   def create
