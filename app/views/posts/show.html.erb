@@ -26,6 +26,12 @@
                 <p class="title"> <%= @post.location.location_name %></p>
                 <p class="title"> Rate: <%= "★" * @post.rate + "☆" * (5-@post.rate)%></p>
                 <span class="updated"> <%= @post.created_at %> posted</span>
+                <% if current_user?(@post.user) %>
+                <p class="title">
+                    <%= link_to "Delete Post", user_post_path(@user, @post), data: { "turbo-method": :delete,
+                                                                turbo_confirm: "You sure?" } %>
+                </p>
+                <% end %>
             </div>
         </header>
         
@@ -34,9 +40,11 @@
             <p class="content"> 
                 <%= @post.message %>
             </p>
+            
             <div class="stats">
                 <span class="comments"> <%= @post.comments.count %> Comments</span>
             </div>
+            
             <div class="post-controls">
                 <button class="btn btn-comment"> <i class="fa fa-comment" aria-hidden="true"></i> Comments </button>
             </div>
@@ -80,6 +88,7 @@
                     <%= link_to "Sign in to make a comment",  login_path, {:class => "btn location-profile-save-btn"} %> 
                 </div>
             <% end %>
+            
             <%= link_to "Back to location",  @post.location, {:class => "btn location-profile-save-btn"} %> 
             
         </section>

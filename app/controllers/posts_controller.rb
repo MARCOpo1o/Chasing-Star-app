@@ -34,13 +34,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    location = @post.location
     @post.destroy
+    
     flash[:success] = "Post deleted"
-    if request.referrer.nil?
-      redirect_to root_url, status: :see_other
-    else
-      redirect_to request.referrer, status: :see_other
-    end
+    redirect_to location, status: :see_other
   end
 
   private
