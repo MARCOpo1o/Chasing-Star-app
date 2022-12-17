@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.paginate(page: params[:page], :per_page => 5) 
     @comment = Comment.new
     session.delete(:return_to)
-    session[:return_to] = request.original_url
+    session[:return_to] = request.original_url 
   end
 
   def create
@@ -34,13 +34,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    location = @post.location
     @post.destroy
+    
     flash[:success] = "Post deleted"
-    if request.referrer.nil?
-      redirect_to root_url, status: :see_other
-    else
-      redirect_to request.referrer, status: :see_other
-    end
+    redirect_to location, status: :see_other
   end
 
   private

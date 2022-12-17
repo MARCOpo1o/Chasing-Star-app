@@ -104,7 +104,7 @@ if ENV["locations"]
   national_parks_hash.each do |park|
       bortleScale = getLightPollution(park['longitude'], park['latitude'])
 
-      if i <= 50 # unsplash api only allows 50 requests per hour
+      if i < 50 # unsplash api only allows 50 requests per hour
           Location.create(location_name: park['park_name'], latitude: park['latitude'], longitude: park['longitude'], image_json: getStarPic, bortleScale: bortleScale)
           i = i+1
       else 
