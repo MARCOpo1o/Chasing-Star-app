@@ -446,5 +446,13 @@
     "acres": 146598,
     "latitude": 37.3,
     "longitude": -113.05
+  },
+  {
+    "park_code": "Brandeis",
+    "park_name": "Brandeis University",
+    "state": "MA",
+    "acres": 235,
+    "latitude": 42.36,
+    "longitude": -71.25
   }
 ]

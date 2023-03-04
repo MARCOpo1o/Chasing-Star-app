@@ -18,7 +18,7 @@ class MapsController < ApplicationController
         location.cloudCoverage = cloudCover
         location.save
       end
-    end 
+    end  
     @pins = Location.all 
     render :recommend
   end
