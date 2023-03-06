@@ -1,6 +1,5 @@
 # Chasing Stars App
 
-[Link to the final report](/Chasing-Stars-final-report.md)
 ## Team7 Member
 
 - Jingqian Cheng: Backend  
