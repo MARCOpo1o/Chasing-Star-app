@@ -1,6 +1,6 @@
 # Chasing Stars App
 
-## Team7 Member
+## Team Member
 
 - Jingqian Cheng: Backend  
 - Jian He: Frontend, UI/UX Design  
